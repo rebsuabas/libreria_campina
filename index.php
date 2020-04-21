@@ -28,7 +28,7 @@
                 header('Location:./inicio_sesion.php');
             }
 
-            ?>
+        ?>
 
     </body>
 </html>
