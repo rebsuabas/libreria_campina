@@ -1,0 +1,30 @@
+#contenedor {
+    margin: 0 auto;
+    width: 600px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 13px;
+}
+
+#contenedor p {
+    text-align: center;
+}
+
+#texto {
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+#pregunta {
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+#botones {
+    margin-left: 215px;
+}
+
+#botones input {
+    padding: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 13px;
+}

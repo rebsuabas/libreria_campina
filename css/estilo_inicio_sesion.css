@@ -1,0 +1,29 @@
+#contenedor {
+    margin: 0 auto;
+    width: 600px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 13px;
+}
+
+#usuario {
+    margin-top: 20px;
+}
+
+#contrasena {
+    margin-top: 20px;
+}
+
+#recordar {
+    margin-top: 10px;
+}
+
+#botones {
+    float: left;
+    margin-top: 30px;
+}
+
+#botones input {
+    padding: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 13px;
+}

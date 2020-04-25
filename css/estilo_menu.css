@@ -1,0 +1,52 @@
+#contenedor {
+    margin: 0 auto;
+    width: 600px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 13px;
+}
+
+#menu img {
+	height: 150px;
+    float: left;
+}
+
+#cerrar_sesion {
+    margin-top: -50px;
+    float: right;
+}
+
+#cerrar_sesion input {
+    padding: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 13px;
+}
+
+#imagenes {
+    margin-top: 70px;
+}
+
+#titulos label {
+    float: left;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#titulos a {
+    color: black;
+}
+
+#libros_disponibles_titulo {
+    margin-left: 30px;
+}
+
+#catalogo_libros_titulo{
+    margin-left: 188px;
+}
+
+#catalogo_autores_titulo{
+    margin-left: 340px;
+}
+
+#mi_perfil_titulo{
+    margin-left: 495px;
+}
