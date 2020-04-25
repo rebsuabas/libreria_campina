@@ -2,24 +2,30 @@
 <html>
     <head>
         <meta charset="UTF-8"/>
+        <link rel="StyleSheet" href="./css/estilo_index.css" type="text/css" />
     </head>
     <body>
-    
+        <div id="contenedor">
         <form action="" method="post">
-            <h2>Librería La Campiña</h2>
-            <h3>BIENVENID@ A NUESTRA PÁGINA WEB</h3>
+            <div id="cabecera">
+                <h2>Librería La Campiña</h2>
+                <h3>BIENVENID@ A NUESTRA PÁGINA WEB</h3>
+            </div>
             <hr>
-            <p>Si eres nuevo te invitamos a unirte a 
-            <br />nosotros. Si ya formas parte de nuestra <br />
-            comunidad, adelante.</p>
-            <input type="submit" name="registro" value="Registro" />
-            <input type="submit" name="inicio_sesion" value="Inicio Sesión" />
+            <div id="contenido">
+                <p>Si eres nuevo te invitamos a unirte a 
+                <br />nosotros. Si ya formas parte de nuestra <br />
+                comunidad, adelante.</p>
+            </div>
+            <div id="botones">
+                <input type="submit" name="registro" value="Registro" />
+                <input type="submit" name="inicio_sesion" value="Inicio Sesión" />
+            </div>
         </form>
-
+        </div>
         <?php
             
-            include 'conexionBD.php';
-            mysqli_select_db($conexion, $nombreBD);
+            include 'conexion.php';
             
             if (isset($_POST['registro'])) {     
                 header('Location:./registro.php');
