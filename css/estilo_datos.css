@@ -1,0 +1,47 @@
+#contenedor {
+    margin: 0 auto;
+    width: 600px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 13px;
+}
+
+#cerrar_sesion {
+    float: right;
+    margin-top: -45px;
+}
+
+#cerrar_sesion input {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 13px;
+    padding: 10px;
+}
+
+#titulo {
+    margin-top: 60px;
+}
+
+.espacio {
+    padding: 10px;
+}
+
+.negrita {
+    font-weight: bold;
+}
+
+#cantidad {
+    margin-bottom: 20px;
+}
+
+#obras {
+    margin-bottom: 20px;
+}
+
+#botones {
+    margin-bottom: 40px;
+}
+
+#botones input {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 13px;
+    padding: 10px;
+}
