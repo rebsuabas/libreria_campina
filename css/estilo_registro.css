@@ -8,3 +8,32 @@
 #menu {
     margin-top: 30px;
 }
+
+#menu input {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 13px;
+    padding-right: 50px;
+    padding: 6px;
+}
+
+.black {
+    font-weight: bold;
+}
+
+.espacio {
+    margin-top: 25px;
+}
+
+.espacio2 {
+    margin-top: 10px;
+}
+
+#botones {
+    float: right;
+    margin-bottom: 40px;
+}
+
+#botones input{
+    padding: 10px;
+
+}

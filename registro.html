@@ -13,114 +13,106 @@
                 <hr>
                 <div id="menu">
                     <div id="nombre">
-                        <label><b>Nombre completo</b></label> 
+                        <label class="black">Nombre completo</label> 
                         <br />
                         <br />
                         <input type="text" name="nombre" value="Nombre" required>
                         <input type="text" name="apellidos" value="Apellidos" required>
                     </div>
-                    <div id="usuario">
-                        <label><b>Usuario</b></label>
+                    <div id="usuario" class="espacio">
+                        <label class="black">Usuario</label>
                         <br />
                         <br />
                         <input type="text" name="usuario" required>
                     </div>
-                    <div id="contrasena">
-                        <label><b>Contraseña</b></label>
+                    <div id="contrasena" class="espacio">
+                        <label class="black">Contraseña</label>
                         <br />
                         <br />
                         <input type="password" name="contrasena" required>
                     </div>
-
-
-                    <!-- AQUÍ ME QUEDÉ -->
-                    
-                    
-                    <label><b>Correo electrónico</b></label>
-                    <br />
-                    <br />
-                    <input type="text" name="email" required>
-                    <br />
-                    <br />
-                    <br />
-                    <label><b>Fecha de nacimiento</b></label>
-                    <br />
-                    <br />
-                    <input type="date" name="fecha_nacimiento" required>
-                    <br />
-                    <br />
-                    <br />
-                    <label><b>Dirección de envío</b></label>
-                    <br />
-                    <br />
-                    <label>Dirección</label> 
-                    <br />
-                    <input type="text" name="direccion" required>
-                    <br />
-                    <br />
-                    <label>Ciudad</label>
-                    <br />
-                    <input type="text" name="ciudad" required>
-                    <br />
-                    <br />
-                    <label>Provincia</label>
-                    <br />
-                    <input type="text" name="provincia" required>
-                    <br />
-                    <br />
-                    <label>Código Postal</label>
-                    <br />
-                    <input type="text" name="codigo_postal" required>
-                    <br />
-                    <br />
-                    <br />
-                    <label><b>Género</b></label>
-                    <br />
-                    <br />
-                    <input type="radio" name="genero" value="Hombre" /><label>Hombre</label><br />
-                    <input type="radio" name="genero" value="Mujer" /><label>Mujer</label><br />
-                    <input type="radio" name="genero" value="Otro"><label>Otro</label>
-                    <br />
-                    <br />
-                    <br />
-                    <h4>Método de pago</h4>
-                    <br />
-                    <input type="radio" name="metodo_pago" value="Tarjeta de crédito o débito"><label><b>Tarjeta de crédito o débito</b></label>
-                    <br/>
-                    <br />
-                        <label>Número de la tarjeta</label>
-                        <br />
-                        <input type="text" name="numero_tarjeta">
+                    <div id="email" class="espacio">
+                        <label class="black">Correo electrónico</label>
                         <br />
                         <br />
-                        <label>Fecha de caducidad</label>
-                        <br />
-                        <input type="date" name="fecha_caducidad">
-                        <br/>
-                        <br />
-                        <label>CVV</label>
-                        <br />
-                        <input type="text" name="cvv">
+                        <input type="text" name="email" required>
+                    </div>
+                    <div id="fecha_nacimiento" class="espacio">
+                        <label class="black">Fecha de nacimiento</label>
                         <br />
                         <br />
+                        <input type="date" name="fecha_nacimiento" required>
+                    </div>
+                    <div id="direccion_envio" class="espacio">
+                        <label class="black">Dirección de envío</label>
+                        <div id="direccion" class="espacio2">
+                            <label>Dirección</label> 
+                            <br />
+                            <input type="text" name="direccion" required>
+                        </div>
+                        <div id="ciudad" class="espacio2">
+                            <label>Ciudad</label>
+                            <br />
+                            <input type="text" name="ciudad" required>
+                        </div>
+                        <div id="provincia" class="espacio2">
+                            <label>Provincia</label>
+                            <br />
+                            <input type="text" name="provincia" required>
+                        </div>
+                        <div id="codigo_postal" class="espacio2">
+                            <label>Código Postal</label>
+                            <br />
+                            <input type="text" name="codigo_postal" required>
+                        </div>
+                    </div>
+                    <div id="genero" class="espacio">
+                        <label class="black">Género</label>
                         <br />
-                    <input type="radio" name="metodo_pago" value="PayPal"><label><b>PayPal</b></label>
-                    <br />
-                    <br />
-                        <label>Correo electrónico de cuenta PayPal</label>
                         <br />
-                        <input type="email" name="email_Paypal">
-                        <br />
-                        <br />
-                        <label>Contraseña PayPal</label>
-                        <br />
-                        <input type="password" name="contrasena_paypal">
-                    <br />
-                    <br />
-                    <br />
-                    <input type="reset" name="limpiar" value="Limpiar">
-                    <input type="submit" name="registrar" value="Registrar">
-                    <input type="submit" name="volver" value="Volver">
+                        <input type="radio" name="genero" value="Hombre" /><label>Hombre</label><br />
+                        <input type="radio" name="genero" value="Mujer" /><label>Mujer</label><br />
+                        <input type="radio" name="genero" value="Otro"><label>Otro</label>
+                    </div>
+                    <div id="metodo_pago">
+                        <h4>Método de pago</h4>
+                        <div id="tarjeta">
+                            <input type="radio" name="metodo_pago" value="Tarjeta de crédito o débito"><label class="black">Tarjeta de crédito o débito</label>
+                                <div id="numero_tarjeta" class="espacio2">
+                                    <label>Número de la tarjeta</label>
+                                    <br />
+                                    <input type="text" name="numero_tarjeta">
+                                </div>
+                                <div id="fecha_caducidad" class="espacio2">
+                                    <label>Fecha de caducidad</label>
+                                    <br />
+                                    <input type="date" name="fecha_caducidad">
+                                </div>
+                                <div id="cvv" class="espacio2">
+                                    <label>CVV</label>
+                                    <br />
+                                    <input type="text" name="cvv">
+                                </div>
+                        </div>
+                        <div id="paypal" class="espacio">
+                            <input type="radio" name="metodo_pago" value="PayPal"><label class="black">PayPal</label>
+                                <div id="email_paypal" class="espacio2">
+                                    <label>Correo electrónico de cuenta PayPal</label>
+                                    <br />
+                                    <input type="email" name="email_paypal">
+                                </div>
+                                <div id="contrasena_paypal" class="espacio2">
+                                    <label>Contraseña PayPal</label>
+                                    <br />
+                                    <input type="password" name="contrasena_paypal">
+                                </div>
+                        </div>
+                    </div>
+                    <div id="botones"class="espacio">
+                        <input type="reset" name="limpiar" value="Limpiar">
+                        <input type="submit" name="registrar" value="Registrar">
+                        <input type="submit" name="volver" value="Volver">
+                    </div>
                 </div>
             </form>
         </div>
