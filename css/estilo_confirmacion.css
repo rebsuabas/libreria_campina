@@ -19,11 +19,15 @@
     margin-bottom: 40px;
 }
 
-#botones {
+#botones_reg {
     margin-left: 215px;
 }
 
-#botones input {
+#botones_com {
+    margin-left: 180px;
+}
+
+.botones {
     padding: 10px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 13px;

@@ -9,18 +9,17 @@
             <form method="POST" action="">
                 <div id="cabecera">
                     <h2>Librería La Campiña</h2>
-                    <h3>BIENVENID@ A NUESTRA PÁGINA WEB</h3>
                 </div>
                 <hr>
                 <div id="texto">
-                    <p>Ya has sido registrad@, ¡Bienvenid@ a nuestra comunidad!</p>
+                    <p>¡Enhorabuena! Usted ha realizado con éxito su compra.</p>
                 </div>
                 <div id="pregunta">
                 <p>¿Qué desea hacer a continuación?</p>
                 </div>
-                <div id="botones_reg">
-                    <input type="submit" name="inicio_sesion" value="Inicio sesión" class="botones">
-                    <input type="submit" name="salir" value="Salir"class="botones">
+                <div id="botones_com">
+                    <input type="submit" name="volver_menu" value="Volver al menú" class="botones">
+                    <input type="submit" name="cerrar_sesion" value="Cerrar Sesión" class="botones">
                 </div>
             </form>
         </div>
