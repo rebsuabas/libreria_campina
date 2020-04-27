@@ -1,0 +1,34 @@
+#contenedor {
+    margin: 0 auto;
+    width: 600px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 13px;
+}
+
+#cerrar_sesion {
+    float: right;
+    margin-top: -50px;
+}
+
+#cerrar_sesion input {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 13px;
+    padding: 10px;
+}
+
+#titulo {
+    margin-top: 60px;
+    font-style: italic;
+    font-size: 15px;
+}
+
+#volver {
+    float: right;
+    margin-bottom: 40px;
+}
+
+#volver input {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 13px;
+    padding: 10px;
+}
