@@ -27,6 +27,14 @@
     margin-left: 180px;
 }
 
+#botones_act {
+    margin-left: 240px;
+}
+
+#botones_eli {
+    margin-left: 275px;
+}
+
 .botones {
     padding: 10px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
