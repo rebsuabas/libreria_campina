@@ -5,6 +5,17 @@
     font-size: 13px;
 }
 
+#cerrar_sesion {
+    float: right;
+    margin-top: -25px;
+}
+
+#cerrar_sesion input {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 13px;
+    padding: 10px;
+}
+
 #menu {
     margin-top: 30px;
 }
