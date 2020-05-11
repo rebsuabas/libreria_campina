@@ -6,7 +6,7 @@ class Usuario {
 
     private $nombre;
     private $apellidos;
-    private $usuario;
+    private $id_usuario;
     private $contrasena;
     private $email;
     private $fecha_nacimiento;
@@ -22,7 +22,7 @@ class Usuario {
     private $email_paypal;
     private $contrasena_paypal;
 
-    const TABLA = 'usuario';
+    const TABLA_USUARIO = 'usuario';
 
 
     public function getNombre() {
@@ -33,8 +33,8 @@ class Usuario {
         return $this->apellidos;
     }
 
-    public function getUsuario() {
-        return $this->usuario;
+    public function getIdUsuario() {
+        return $this->id_usuario;
     }
 
     public function getContrasena() {
@@ -97,70 +97,124 @@ class Usuario {
         $this->nombre = $nombre;
     }
 
-    public function setApellidos() {
+    public function setApellidos($apellidos) {
         $this->apellidos = $apellidos;
     }
 
-    public function setUsuario() {
-        $this->usuario = $usuario;
+    public function setIdUsuario($id_usuario) {
+        $this->id_usuario = $id_usuario;
     }
 
-    public function setContrasena() {
+    public function setContrasena($contrasena) {
         $this->contrasena = $contrasena;
     }
 
-    public function setEmail() {
+    public function setEmail($email) {
         $this->email = $email;
     }
 
-    public function setFechaNacimiento() {
+    public function setFechaNacimiento($fecha_nacimiento) {
         $this->fecha_nacimiento = $fecha_nacimiento;
     }
 
-    public function setDireccion() {
+    public function setDireccion($direccion) {
         $this->direccion = $direccion;
     }
 
-    public function setCiudad() {
+    public function setCiudad($ciudad) {
         $this->ciudad = $ciudad;
     }
 
-    public function setProvincia() {
+    public function setProvincia($provincia) {
         $this->provincia = $provincia;
     }
 
-    public function setCodigoPostal() {
+    public function setCodigoPostal($codigo_postal) {
         $this->codigo_postal = $codigo_postal;
     }
     
-    public function setGenero() {
+    public function setGenero($genero) {
         $this->genero = $genero;
     }
 
-    public function setMetodoPago() {
+    public function setMetodoPago($metodo_pago) {
         $this->metodo_mago = $metodo_pago;
     }
 
-    public function setNumeroTarjeta() {
+    public function setNumeroTarjeta($numero_tarjeta) {
         $this->numero_tarjeta = $numero_tarjeta;
     }
 
-    public function setFechaCaducidad() {
+    public function setFechaCaducidad($fecha_caducidad) {
         $this->fecha_caducidad = $fecha_caducidad;
     }
 
-    public function setCVV() {
+    public function setCVV($cvv) {
         $this->cvv = $cvv;
     }
     
-    public function setEmailPaypal() {
+    public function setEmailPaypal($email_paypal) {
         $this->email_paipal = $email_paypal;
     }
 
-    public function setContrasenaPaypal() {
+    public function setContrasenaPaypal($contrasena_paypal) {
         $this->contrasena_paypal = $contrasena_paypal;
     }
 
+    public function __construct($nombre, $apellidos, $id_usuario=null, $contrasena, $email, 
+    $fecha_nacimiento, $direccion, $ciudad, $provincia, $codigo_postal, $genero, $metodo_pago, 
+    $numero_tarjeta, $fecha_caducidad, $cvv, $email_paypal, $contrasena_paypal) {
+        $this->nombre = $nombre;
+        $this->apellidos = $apellidos;
+        $this->id_usuario = $id_usuario;
+        $this->contrasena = $contrasena;
+        $this->email = $email;
+        $this->fecha_nacimiento = $fecha_nacimiento;
+        $this->direccion = $direccion;
+        $this->ciudad = $ciudad;
+        $this->provincia = $provincia;
+        $this->codigo_postal = $codigo_postal;
+        $this->genero = $genero;
+        $this->metodo_pago = $metodo_pago;
+        $this->numero_tarjeta = $numero_tarjeta;
+        $this->fecha_caducidad = $fecha_caducidad;
+        $this->cvv = $cvv;
+        $this->email_paypal = $email_paypal;
+        $this->contrasena_paypal = $contrasena_paypal;
+
+    }
+
+
+
+
+
+
+    /*----- LO DE ABAJO NO ESTÁ TERMINADO -----*/
+
+
+    public function guardar(){
+        
+        $conexion = new Conexion();
+        
+        if(!$this->id_usuario) /*Inserta datos*/ {
+            
+            $consulta = $conexion->prepare('INSERT INTO ' . self::TABLA_USUARIO . 
+            ' ( nombre, apellidos, id_usuario,curso,transporteEscolar) 
+            VALUES(:nombre,:apellidos,:edad,:curso,:transporteEscolar)');
+              
+            $consulta->bindParam(':nombre', $this->nombre);
+            $consulta->bindParam(':apellidos', $this->apellidos);
+            $consulta->bindParam(':edad', $this->edad);
+            $consulta->bindParam(':curso', $this->curso);
+            $consulta->bindParam(':transporteEscolar', $this->transporteEscolar);
+            $respuesta1=$consulta->execute();
+            $this->idAlumno = $conexion->lastInsertId();
+        
+        }
+
+        $conexion = null;
+
+    }
 }
 
 ?>
