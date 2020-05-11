@@ -23,7 +23,7 @@
                         <label class="black">Usuario</label>
                         <br />
                         <br />
-                        <input type="text" name="usuario" required>
+                        <input type="text" name="id_usuario" required>
                     </div>
                     <div id="contrasena" class="espacio">
                         <label class="black">Contraseña</label>
