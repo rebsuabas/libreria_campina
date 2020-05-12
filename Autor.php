@@ -61,6 +61,18 @@ class Autor {
         $this->obras = $obras;
     }
 
+    public function __construct($id_autor=null, $nombre, $nacionalidad, $ano_nacimiento, $ano_defuncion, 
+    $obras) {
+        
+        $this->id_autor = $id_autor;
+        $this->nombre = $nombre;
+        $this->nacionalidad = $nacionalidad;
+        $this->ano_nacimiento = $ano_nacimiento;
+        $this->ano_defuncion = $ano_defuncion;
+        $this->obras = $obras;
+
+    }
+
 }
 
 ?>

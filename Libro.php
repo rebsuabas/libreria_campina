@@ -88,6 +88,21 @@ class Libro {
         $this->cantidad = $cantidad;
     }
 
+    public function __construct($id_libro=null, $titulo, $titulo_original, $id_autor, $idioma, 
+    $idioma_original, $disponibilidad, $precio, $cantidad) {
+        
+        $this->id_libro = $id_libro;
+        $this->titulo = $titulo;
+        $this->titulo_original = $titulo_original;
+        $this->id_autor = $id_autor;
+        $this->idioma = $idioma;
+        $this->idioma_original = $idioma_original;
+        $this->disponibilidad = $disponibilidad;
+        $this->precio = $precio;
+        $this->cantidad = $cantidad;
+
+    }
+
 }
 
 ?>

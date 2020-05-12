@@ -164,6 +164,7 @@ class Usuario {
     public function __construct($nombre, $apellidos, $id_usuario=null, $contrasena, $email, 
     $fecha_nacimiento, $direccion, $ciudad, $provincia, $codigo_postal, $genero, $metodo_pago, 
     $numero_tarjeta, $fecha_caducidad, $cvv, $email_paypal, $contrasena_paypal) {
+        
         $this->nombre = $nombre;
         $this->apellidos = $apellidos;
         $this->id_usuario = $id_usuario;
@@ -184,37 +185,126 @@ class Usuario {
 
     }
 
-
-
-
-
-
-    /*----- LO DE ABAJO NO ESTÁ TERMINADO -----*/
-
-
     public function guardar(){
-        
+
         $conexion = new Conexion();
         
-        if(!$this->id_usuario) /*Inserta datos*/ {
+	    if(!$this->id_usuario) {
             
-            $consulta = $conexion->prepare('INSERT INTO ' . self::TABLA_USUARIO . 
-            ' ( nombre, apellidos, id_usuario,curso,transporteEscolar) 
-            VALUES(:nombre,:apellidos,:edad,:curso,:transporteEscolar)');
-              
-            $consulta->bindParam(':nombre', $this->nombre);
-            $consulta->bindParam(':apellidos', $this->apellidos);
-            $consulta->bindParam(':edad', $this->edad);
-            $consulta->bindParam(':curso', $this->curso);
-            $consulta->bindParam(':transporteEscolar', $this->transporteEscolar);
-            $respuesta1=$consulta->execute();
-            $this->idAlumno = $conexion->lastInsertId();
+            $consulta = $conexion->prepare('INSERT INTO ' . self::TABLA_USUARIO .
+            ' (nombre, apellidos, contrasena, email, fecha_nacimiento, direccion, 
+            ciudad, provincia, codigo_postal, genero, metodo_pago, numero_tarjeta, fecha_caducidad, 
+            cvv, email_paypal, contrasena_paypal) 
+            VALUES(:nombre, :apellidos, :contrasena, :email, :fecha_nacimiento, :direccion, 
+            :ciudad, :provincia, :codigo_postal, :genero, :metodo_pago, :numero_tarjeta, :fecha_caducidad, 
+            :cvv, :email_paypal, :contrasena_paypal)');
+	             
+	        $consulta->bindParam(':nombre', $this->nombre);
+	        $consulta->bindParam(':apellidos', $this->apellidos);
+	        $consulta->bindParam(':contrasena', $this->contrasena);
+	        $consulta->bindParam(':email', $this->email);
+            $consulta->bindParam(':fecha_nacimiento', $this->fecha_nacimiento);
+            $consulta->bindParam(':direccion', $this->direccion);
+            $consulta->bindParam(':ciudad', $this->ciudad);
+            $consulta->bindParam(':provincia', $this->provincia);
+            $consulta->bindParam(':codigo_postal', $this->codigo_postal);
+            $consulta->bindParam(':genero', $this->genero);
+            $consulta->bindParam(':metodo_pago', $this->metodo_pago);
+            $consulta->bindParam(':numero_tarjeta', $this->numero_tarjeta);
+            $consulta->bindParam(':fecha_caducidad', $this->fecha_caducidad);
+            $consulta->bindParam(':cvv', $this->cvv);
+            $consulta->bindParam(':email_paypal', $this->email_paypal);
+            $consulta->bindParam(':contrasena_paypal', $this->contrasena_paypal);
+
+            $res=$consulta->execute();
+            
+			$this->id_usuario = $conexion->lastInsertId();
+			
+	        if ($res) {
+				header('Location:./confirmacion_registro.php');
+			} else {
+				header('Location:./error_registro.php');
+			}
+		}
+        
+        $conexion = null; 
+    
+    }
+
+
+    public static function modificar($nombre, $apellidos, $id_usuario, $contrasena, $email, 
+    $fecha_nacimiento, $direccion, $ciudad, $provincia, $codigo_postal, $genero, $metodo_pago, 
+    $numero_tarjeta, $fecha_caducidad, $cvv, $email_paypal, $contrasena_paypal){
+        
+        $conexion =new Conexion();
+
+        if($id_usuario == TRUE){
+        
+        $consulta = $conexion->prepare('UPDATE ' . self::TABLA_USUARIO .
+        ' SET nombre = :nombre, apellidos = :apellidos, contrasena = :apellidos, email = :email, 
+        fecha_nacimiento = :fecha_nacimiento, direccion = :direccion, ciudad = :ciudad, 
+        provincia = :provincia, codigo_postal = :codigo_postal, genero = :genero, metodo_pago = :metodo_pago,
+        numero_tarjeta = :numero_tarjeta, fecha_caducidad = :fecha_caducidad, cvv = :cvv, 
+        email_paypal = :email_paypal, contrasena_paypal = :contrasena_paypal 
+        WHERE id_usuario = :id_usuario' );
+
+        $consulta->bindParam(':nombre', $nombre);
+        $consulta->bindParam(':apellidos', $apellidos);
+        $consulta->bindParam(':id_usuario', $id_usuario);
+        $consulta->bindParam(':contrasena', $contrasena);
+        $consulta->bindParam(':email', $email);
+        $consulta->bindParam(':fecha_nacimiento', $fecha_nacimiento);
+        $consulta->bindParam(':direccion', $direccion);
+        $consulta->bindParam(':ciudad', $ciudad);
+        $consulta->bindParam(':provincia', $provincia);
+        $consulta->bindParam(':codigo_postal', $codigo_postal);
+        $consulta->bindParam(':genero', $genero);
+        $consulta->bindParam(':metodo_pago', $metodo_pago);
+        $consulta->bindParam(':numero_tarjeta', $numero_tarjeta);
+        $consulta->bindParam(':fecha_caducidad', $fecha_caducidad);
+        $consulta->bindParam(':cvv', $cvv);
+        $consulta->bindParam(':email_paypal', $email_paypal);
+        $consulta->bindParam(':contrasena_paypal', $contrasena_paypal);
+        
+        $res=$consulta->execute();
+        
+        if($res){
+            header('Location:./confirmacion_actualizacion.php');
+        }else{
+            header('Location:./error_actualizacion.php');
+        }
         
         }
 
-        $conexion = null;
-
+        $conexion = null; 
+    
     }
+
+    public static function eliminar($id_usuario){
+        
+        $conexion =new Conexion();
+
+        if($id_usuario){
+
+            $consulta = $conexion->prepare('DELETE FROM ' . self::TABLA_USUARIO .
+            '  WHERE id_usuario = :id_usuario' );
+
+            $consulta->bindParam(':id_usuario', $id_usuario);
+
+            $res=$consulta->execute();
+
+            if ($res == TRUE) {
+                header('Location:./confirmacion_eliminacion.php');
+            } else {
+                header('Location:./error_eliminacion.php');
+            }
+         
+        }
+
+        $conexion = null; 
+    }
+
+
 }
 
 ?>
