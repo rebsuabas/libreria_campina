@@ -116,5 +116,46 @@
                 </div>
             </form>
         </div>
+
+
+
+        <?php 
+	
+            require_once 'Usuario.php';
+            
+            $nombre = $_POST['nombre'];
+            $apellidos = $_POST['apellidos'];
+            $id_usuario = $_POST['id_usuario'];
+            $contrasena = $_POST['contrasena'];
+            $email = $_POST['email'];
+            $fecha_nacimiento = $_POST['fecha_nacimiento'];
+            $direccion = $_POST['direccion'];
+            $ciudad = $_POST['ciudad'];
+            $provincia = $_POST['provincia'];
+            $codigo_postal = $_POST['codigo_postal'];
+            $genero = $_POST['genero'];
+            $metodo_pago = $_POST['metodo_pago'];
+            $numero_tarjeta = $_POST['numero_tarjeta'];
+            $fecha_caducidad = $_POST['fecha_caducidad'];
+            $cvv = $_POST['cvv'];
+            $email_paypal = $_POST['email_paypal'];
+            $contrasena_paypal = $_POST['contrasena_paypal'];
+
+            if (isset($_POST['registrar'])) {
+            
+                $guardar=new Usuario($nombre, $apellidos, $id_usuario, $contrasena, $email, 
+                $fecha_nacimiento, $direccion, $ciudad, $provincia, $codigo_postal, $genero, 
+                $metodo_pago, $numero_tarjeta, $fecha_caducidad, $cvv, $email_paypal, $contrasena_paypal);
+                
+                $guardar->guardar();
+
+            } elseif (isset($_POST['volver'])) {
+
+                header('Location:./index.php');
+
+            }
+
+	    ?>
+
     </body>
 </html>
