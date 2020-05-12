@@ -1,0 +1,42 @@
+#contenedor {
+    margin: 0 auto;
+    width: 600px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 13px;
+}
+
+#contenedor p {
+    text-align: center;
+}
+
+#texto {
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+#pregunta {
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+#botones_reg {
+    margin-left: 270px;
+}
+
+#botones_com {
+    margin-left: 180px;
+}
+
+#botones_act {
+    margin-left: 270px;
+}
+
+#botones_eli {
+    margin-left: 275px;
+}
+
+.botones {
+    padding: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 13px;
+}
