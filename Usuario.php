@@ -304,6 +304,78 @@ class Usuario {
         $conexion = null; 
     }
 
+    public static function buscarPorIdTarjeta($id_usuario){
+        
+        $conexion = new Conexion();
+        
+        $consulta = $conexion->prepare('SELECT nombre, apellidos, id_usuario, email, fecha_nacimiento, 
+        direccion, ciudad, provincia, codigo_postal, genero, metodo_pago, numero_tarjeta, fecha_caducidad, 
+        cvv FROM ' . self::TABLA_USUARIO . 
+        ' WHERE id_usuario = :id_usuario');
+        
+        $consulta->bindParam(':id_usuario', $id_usuario);
+        $consulta->execute();
+        
+        $registro = $consulta->fetch();
+        
+        if ($registro) {
+            return new self($registro['nombre'], $registro['apellidos'], $registro['id_usuario'],
+            $registro['email'], $registro['fecha_nacimiento'], $registro['direccion'], $registro['ciudad'],
+            $registro['provincia'], $registro['codigo_postal'], $registro['genero'], 
+            $registro['metodo_pago'], $registro['numero_tarjeta'], $registro['fecha_caducidad'],
+            $registro['cvv'], $id_usuario);
+        } else {
+            return false;
+        }
+    }
+
+    public static function buscarPorIdPaypal($id_usuario){
+        
+        $conexion = new Conexion();
+        
+        $consulta = $conexion->prepare('SELECT nombre, apellidos, id_usuario, email, fecha_nacimiento, 
+        direccion, ciudad, provincia, codigo_postal, genero, metodo_pago, email_paypal, contrasena_paypal 
+        FROM ' . self::TABLA_USUARIO . ' WHERE id_usuario = :id_usuario');
+        
+        $consulta->bindParam(':id_usuario', $id_usuario);
+        $consulta->execute();
+        
+        $registro = $consulta->fetch();
+        
+        if ($registro) {
+            return new self($registro['nombre'], $registro['apellidos'], $registro['id_usuario'],
+            $registro['email'], $registro['fecha_nacimiento'], $registro['direccion'], $registro['ciudad'],
+            $registro['provincia'], $registro['codigo_postal'], $registro['genero'], 
+            $registro['metodo_pago'], $registro['email_paypal'], $registro['contrasena_paypal'], $id_usuario);
+        } else {
+            return false;
+        }
+    }
+
+    public static function inicioSesion($id_usuario, $contrasena){
+        
+        $conexion = new Conexion();
+        
+        $consulta = $conexion->prepare('SELECT id_usuario, contrasena FROM ' 
+        . self::TABLA_USUARIO . ' WHERE id_usuario = :id_usuario AND contrasena = :contrasena');
+        
+        $consulta->bindParam(':id_usuario', $id_usuario);
+        $consulta->bindParam(':contrasena', $contrasena);
+        $consulta->execute();
+        
+        $registro = $consulta->fetch();
+        
+        if ($registro) {
+            
+            return new self($registro['id_usuario'], $registro['contrasena'], $id_usuario, $contrasena);
+            
+            header('Location:./confirmacion_eliminacion.php');
+
+        } else {
+            return false;
+        }
+    }
+
 
 }
 
