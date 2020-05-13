@@ -1,3 +1,15 @@
+<?php 
+	
+    if (isset($_POST['cerrar_sesion'])) {
+        header('Location:./index.php');
+    } elseif (isset($_POST['actualizar'])) {
+
+    } elseif (isset($_POST['volver'])) {
+        header('Location:./mi_perfil.php');
+    } 
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>

@@ -1,3 +1,13 @@
+<?php
+            
+    if (isset($_POST['registro'])) {     
+        header('Location:./registro.php');
+    } elseif (isset($_POST['inicio_sesion'])) {
+        header('Location:./inicio_sesion.php');
+    }
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,19 +33,6 @@
             </div>
         </form>
         </div>
-        <?php
-            
-            include 'conexion.php';
-            
-            if (isset($_POST['registro'])) {     
-                header('Location:./registro.php');
-            }
-
-            elseif (isset($_POST['inicio_sesion'])) {
-                header('Location:./inicio_sesion.php');
-            }
-
-        ?>
 
     </body>
 </html>

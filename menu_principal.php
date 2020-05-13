@@ -1,3 +1,11 @@
+<?php 
+	
+    if (isset($_POST['cerrar_sesion'])) {
+        header('Location:./index.php');
+    } 
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>

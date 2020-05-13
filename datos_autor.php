@@ -1,3 +1,13 @@
+<?php 
+	
+    if (isset($_POST['cerrar_sesion'])) {
+        header('Location:./index.php');
+    } elseif (isset($_POST['volver'])) {
+        header('Location:./catalogo_autores.php');
+    } 
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>

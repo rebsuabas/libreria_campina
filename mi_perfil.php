@@ -1,3 +1,17 @@
+<?php 
+	
+    if (isset($_POST['cerrar_sesion'])) {
+        header('Location:./index.php');
+    } elseif (isset($_POST['editar'])) {
+        header('Location:./editar_perfil.php');
+    } elseif (isset($_POST['eliminar'])) {
+        
+    } elseif (isset($_POST['volver'])) {
+        header('Location:./menu_principal.php');
+    } 
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>

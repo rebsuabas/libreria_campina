@@ -1,3 +1,11 @@
+<?php 
+	
+    if (isset($_POST['volver_menu'])) {
+        header('Location:./menu_principal.php');
+    } 
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
