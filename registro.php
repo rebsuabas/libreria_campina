@@ -1,3 +1,14 @@
+<?php
+        
+    if(isset($_POST['registrar'])) {
+        # code...
+    } elseif(isset($_POST['volver'])) {
+        header('Location:./index.php');
+    }
+                    
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,54 +27,54 @@
                         <label class="black">Nombre completo</label> 
                         <br />
                         <br />
-                        <input type="text" name="nombre" value="Nombre" required>
-                        <input type="text" name="apellidos" value="Apellidos" required>
+                        <input type="text" name="nombre" value="Nombre">
+                        <input type="text" name="apellidos" value="Apellidos">
                     </div>
                     <div id="usuario" class="espacio">
                         <label class="black">Usuario</label>
                         <br />
                         <br />
-                        <input type="text" name="id_usuario" required>
+                        <input type="text" name="id_usuario">
                     </div>
                     <div id="contrasena" class="espacio">
                         <label class="black">Contraseña</label>
                         <br />
                         <br />
-                        <input type="password" name="contrasena" required>
+                        <input type="password" name="contrasena">
                     </div>
                     <div id="email" class="espacio">
                         <label class="black">Correo electrónico</label>
                         <br />
                         <br />
-                        <input type="text" name="email" required>
+                        <input type="text" name="email">
                     </div>
                     <div id="fecha_nacimiento" class="espacio">
                         <label class="black">Fecha de nacimiento</label>
                         <br />
                         <br />
-                        <input type="date" name="fecha_nacimiento" required>
+                        <input type="date" name="fecha_nacimiento">
                     </div>
                     <div id="direccion_envio" class="espacio">
                         <label class="black">Dirección de envío</label>
                         <div id="direccion" class="espacio2">
                             <label>Dirección</label> 
                             <br />
-                            <input type="text" name="direccion" required>
+                            <input type="text" name="direccion">
                         </div>
                         <div id="ciudad" class="espacio2">
                             <label>Ciudad</label>
                             <br />
-                            <input type="text" name="ciudad" required>
+                            <input type="text" name="ciudad">
                         </div>
                         <div id="provincia" class="espacio2">
                             <label>Provincia</label>
                             <br />
-                            <input type="text" name="provincia" required>
+                            <input type="text" name="provincia">
                         </div>
                         <div id="codigo_postal" class="espacio2">
                             <label>Código Postal</label>
                             <br />
-                            <input type="text" name="codigo_postal" required>
+                            <input type="text" name="codigo_postal">
                         </div>
                     </div>
                     <div id="genero" class="espacio">
@@ -114,48 +125,9 @@
                         <input type="submit" name="volver" value="Volver">
                     </div>
                 </div>
+            
             </form>
         </div>
-
-
-
-        <?php 
-	
-            require_once 'Usuario.php';
-            
-            $nombre = $_POST['nombre'];
-            $apellidos = $_POST['apellidos'];
-            $id_usuario = $_POST['id_usuario'];
-            $contrasena = $_POST['contrasena'];
-            $email = $_POST['email'];
-            $fecha_nacimiento = $_POST['fecha_nacimiento'];
-            $direccion = $_POST['direccion'];
-            $ciudad = $_POST['ciudad'];
-            $provincia = $_POST['provincia'];
-            $codigo_postal = $_POST['codigo_postal'];
-            $genero = $_POST['genero'];
-            $metodo_pago = $_POST['metodo_pago'];
-            $numero_tarjeta = $_POST['numero_tarjeta'];
-            $fecha_caducidad = $_POST['fecha_caducidad'];
-            $cvv = $_POST['cvv'];
-            $email_paypal = $_POST['email_paypal'];
-            $contrasena_paypal = $_POST['contrasena_paypal'];
-
-            if (isset($_POST['registrar'])) {
-            
-                $guardar=new Usuario($nombre, $apellidos, $id_usuario, $contrasena, $email, 
-                $fecha_nacimiento, $direccion, $ciudad, $provincia, $codigo_postal, $genero, 
-                $metodo_pago, $numero_tarjeta, $fecha_caducidad, $cvv, $email_paypal, $contrasena_paypal);
-                
-                $guardar->guardar();
-
-            } elseif (isset($_POST['volver'])) {
-
-                header('Location:./index.php');
-
-            }
-
-	    ?>
 
     </body>
 </html>

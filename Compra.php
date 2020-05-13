@@ -32,30 +32,6 @@ class Compra {
 
     }
 
-    public function guardar(){
-
-        $conexion = new Conexion();
-        
-	    if(!$this->id_usuario) {
-            
-            $consulta = $conexion->prepare('INSERT INTO ' . self::TABLA_COMPRA .
-            ' (id_usuario, id_libro) VALUES(:id_usuario, :id_libro)');
-	             
-	        $consulta->bindParam(':id_usuario', $this->id_usuario);
-	        $consulta->bindParam(':id_libro', $this->id_libro);
-
-            $res=$consulta->execute();
-			
-	        if ($res) {
-				header('Location:./confirmacion_compra.php');
-            }
-            
-		}
-        
-        $conexion = null; 
-    
-    }
-
 
 }
 
