@@ -2,30 +2,30 @@
 
     class Conexion { 
         
-        public $host = "localhost";
-        public $dbname = "libreria_campina";
-        public $user = "root";
-        public $pwd = "2asir"; 
+        private $host;
+        private $dbname;
+        private $user;
+        private $pwd;
+        private $charset;
         
-        public function Conectar() {
-           
-            try {
-                $connection = "mysql:host=$this->host;dbname=$this->dbname";
-                $user = $this->user;
-                $pwd = $this->pwd;
+        public function __construct(){
+            $this->host     = 'localhost';
+            $this->dbname   = 'libreria_campina';
+            $this->user     = 'root';
+            $this->pwd      = '2asir';
+            $this->charset  = 'utf8mb4';
+        }
 
-                $options = array (
-                    PDO::MYSQL_ATTR_LOCAL_INFILE => 1,
-                    PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
-                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
-                
-                $pdo = new PDO ($connection, $user, $pwd, $options);
-                return $pdo;
-            }catch(PDOException $e){      
+        public function connect(){
+            try {
+                $connection = "mysql:host=" . $this->host . ";dbname=" . $this->dbname . ";charset=" . $this->charset;
+                $options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                            PDO::ATTR_EMULATE_PREPARES => false];
+                $pdo = new PDO($connection, $this->user, $this->pwd, $options);
+            } catch (PDOException $e) {
                 print_r("Error connection: " . $e->getMessage());
             }
         }
-        
         
     }
     
