@@ -1,5 +1,5 @@
 <?php
-            
+
     if (isset($_POST['registro'])) {     
         header('Location:./registro.php');
     } elseif (isset($_POST['inicio_sesion'])) {

@@ -1,5 +1,7 @@
 <?php
-        
+    
+    include_once './Usuario.php';
+
     if(isset($_POST['registrar'])) {
         # code...
     } elseif(isset($_POST['volver'])) {

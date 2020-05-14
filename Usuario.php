@@ -1,8 +1,8 @@
 <?php
 
-require_once "conexion.php";
+include_once 'conexion.php';
 
-class Usuario {
+class Usuario extends Conexion{
 
     private $nombre;
     private $apellidos;

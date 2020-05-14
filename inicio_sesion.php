@@ -1,5 +1,7 @@
 <?php 
-	
+    
+    include_once './Usuario.php';
+    
     if (isset($_POST['iniciar_sesion'])) {
 
     } elseif (isset($_POST['salir'])) {
