@@ -1,8 +1,17 @@
 <?php 
-	
+    
     if (isset($_POST['cerrar_sesion'])) {
         header('Location:./index.php');
     } 
+    
+    /*include_once './clases/Usuario.php';
+    include_once './clases/sesion.php';
+
+    $sesionUsuario = new Sesion();
+    $usuario = new Usuario();
+
+    session_start();
+    $id_usuario = $_SESSION['id_usuario'];*/
 
 ?>
 
@@ -17,6 +26,7 @@
             <form method="POST" action="">
                 <div id="cabecera">
                     <h2>Librería La Campiña</h2>
+                    <h3>Bienvenid@ <?php $id_usuario ?></h3>
                 </div>
                 <hr>
                 <div id="menu">

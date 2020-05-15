@@ -1,10 +1,8 @@
 <?php
     
-    include_once './Usuario.php';
+    include_once './clases/Usuario.php';
 
-    if(isset($_POST['registrar'])) {
-        # code...
-    } elseif(isset($_POST['volver'])) {
+    if(isset($_POST['volver'])) {
         header('Location:./index.php');
     }
     

@@ -1,35 +1,29 @@
 <?php 
     
-    include_once './Usuario.php';
+    include_once './clases/Usuario.php';
+    include_once './clases/sesion.php';
+
+    $sesionUsuario = new Sesion();
+    $usuario = new Usuario();
     
-    if (isset($_POST['iniciar_sesion'])) {
+    
+    $_SESSION['id_usuario']=(isset($_POST['id_usuario']) ?htmlspecialchars($_POST['id_usuario']):'');
+    
+    $id_usuario=(isset($_POST['id_usuario']) ?htmlspecialchars($_POST['id_usuario']):'');
+    $contrasena=(isset($_POST['contrasena']) ?htmlspecialchars($_POST['contrasena']):'');
+
+    if (isset($_POST['id_usuario']) && isset($_POST['contrasena'])) {
+
+        if ($usuario->existeUsuario($id_usuario, $contrasena)) {
+            $sesionUsuario->getUsuarioActual($id_usuario);
+            $usuario->setUsuario($id_usuario);
+            include_once './menu_principal.php';
+        } else {
+            echo "Error en la validacion";
+        }
 
     } elseif (isset($_POST['salir'])) {
         header('Location:./index.php');
-    } 
-
-    include_once 'Usuario.php';
-    include_once 'sesion.php';
-
-    $usuarioActual = new Sesion();
-    $id_usuario = new Usuario();
-
-    if (isset($_SESSION['id_usuario'])) {
-        echo "Hay sesión";
-    } elseif (isset($_POST['id_usuario']) && isset($_POST['contrasena'])) {
-        echo "Validación de login";
-
-        /*$userForm = $_POST['id_usuario'];
-        $passForm = $_POST['contrasena'];
-
-        if ($id_usuario->existeUsuario($userForm, $passForm)) {
-            echo "Usuario validado";
-        } else {
-            echo "Incorrecto";
-        }*/
-
-    } else {
-        echo "Login";
     } 
 
 ?>
@@ -52,7 +46,7 @@
                         <label><b>Usuario</b></label> 
                         <br />
                         <br />
-                        <input type="text" name="usuario">
+                        <input type="text" name="id_usuario">
                     </div>
                     <div id="contrasena">
                         <label><b>Contraseña</b></label>
