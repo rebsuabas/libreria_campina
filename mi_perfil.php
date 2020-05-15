@@ -48,7 +48,7 @@
                             <label class="negrita">Correo electrónico: </label>
                             <label></label>
                         </div>
-                        <div id="fecha_nacimiento" class="espacio">
+                        <div id="fechaNacimiento" class="espacio">
                             <label class="negrita">Fecha de nacimiento: </label>
                             <label></label>
                         </div>

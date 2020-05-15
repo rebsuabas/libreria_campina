@@ -46,11 +46,11 @@
                         <br />
                         <input type="text" name="email">
                     </div>
-                    <div id="fecha_nacimiento" class="espacio">
+                    <div id="fechaNacimiento" class="espacio">
                         <label class="black">Fecha de nacimiento</label>
                         <br />
                         <br />
-                        <input type="date" name="fecha_nacimiento">
+                        <input type="date" name="fechaNacimiento">
                     </div>
                     <div id="direccion_envio" class="espacio">
                         <label class="black">Dirección de envío</label>
@@ -69,10 +69,10 @@
                             <br />
                             <input type="text" name="provincia">
                         </div>
-                        <div id="codigo_postal" class="espacio2">
+                        <div id="codigoPostal" class="espacio2">
                             <label>Código Postal</label>
                             <br />
-                            <input type="text" name="codigo_postal">
+                            <input type="text" name="codigoPostal">
                         </div>
                     </div>
                     <div id="genero" class="espacio">
@@ -84,37 +84,23 @@
                         <input type="radio" name="genero" value="Otro"><label>Otro</label>
                     </div>
                     <div id="metodo_pago">
-                        <h4>Método de pago</h4>
+                        <h4>Datos de pago</h4>
                         <div id="tarjeta">
-                            <input type="radio" name="metodo_pago" value="Tarjeta de crédito o débito"><label class="black">Tarjeta de crédito o débito</label>
-                                <div id="numero_tarjeta" class="espacio2">
-                                    <label>Número de la tarjeta</label>
-                                    <br />
-                                    <input type="text" name="numero_tarjeta">
-                                </div>
-                                <div id="fecha_caducidad" class="espacio2">
-                                    <label>Fecha de caducidad</label>
-                                    <br />
-                                    <input type="date" name="fecha_caducidad">
-                                </div>
-                                <div id="cvv" class="espacio2">
-                                    <label>CVV</label>
-                                    <br />
-                                    <input type="text" name="cvv">
-                                </div>
-                        </div>
-                        <div id="paypal" class="espacio">
-                            <input type="radio" name="metodo_pago" value="PayPal"><label class="black">PayPal</label>
-                                <div id="email_paypal" class="espacio2">
-                                    <label>Correo electrónico de cuenta PayPal</label>
-                                    <br />
-                                    <input type="email" name="email_paypal">
-                                </div>
-                                <div id="contrasena_paypal" class="espacio2">
-                                    <label>Contraseña PayPal</label>
-                                    <br />
-                                    <input type="password" name="contrasena_paypal">
-                                </div>
+                            <div id="numeroTarjeta" class="espacio2">
+                                <label>Número de la tarjeta</label>
+                                <br />
+                                <input type="text" name="numeroTarjeta">
+                            </div>
+                            <div id="fechaCaducidad" class="espacio2">
+                                <label>Fecha de caducidad</label>
+                                <br />
+                                <input type="date" name="fechaCaducidad">
+                            </div>
+                            <div id="cvv" class="espacio2">
+                                <label>CVV</label>
+                                <br />
+                                <input type="text" name="cvv">
+                            </div>
                         </div>
                     </div>
                     <div id="botones" class="espacio">

@@ -4,26 +4,27 @@ include_once 'conexion.php';
 
 class Usuario extends Conexion{
 
+    private $id_usuario;
     private $nombre;
     private $apellidos;
-    private $id_usuario;
     private $contrasena;
     private $email;
-    private $fecha_nacimiento;
+    private $fechaNacimiento;
     private $direccion;
     private $ciudad;
     private $provincia;
-    private $codigo_postal;
+    private $codigoPostal;
     private $genero;
-    private $metodo_pago;
-    private $numero_tarjeta;
-    private $fecha_caducidad;
+    private $numeroTarjeta;
+    private $fechaCaducidad;
     private $cvv;
-    private $email_paypal;
-    private $contrasena_paypal;
 
     const TABLA_USUARIO = 'usuario';
 
+
+    public function getIdUsuario() {
+        return $this->id_usuario;
+    }
 
     public function getNombre() {
         return $this->nombre;
@@ -31,10 +32,6 @@ class Usuario extends Conexion{
 
     public function getApellidos() {
         return $this->apellidos;
-    }
-
-    public function getIdUsuario() {
-        return $this->id_usuario;
     }
 
     public function getContrasena() {
@@ -46,7 +43,7 @@ class Usuario extends Conexion{
     }
 
     public function getFechaNacimiento() {
-        return $this->fecha_nacimiento;
+        return $this->fechaNacimiento;
     }
 
     public function getDireccion() {
@@ -62,47 +59,35 @@ class Usuario extends Conexion{
     }
 
     public function getCodigoPostal() {
-        return $this->codigo_postal;
+        return $this->codigoPostal;
     }
     
     public function getGenero() {
         return $this->genero;
     }
 
-    public function getMetodoPago() {
-        return $this->metodo_mago;
-    }
-
     public function getNumeroTarjeta() {
-        return $this->numero_tarjeta;
+        return $this->numeroTarjeta;
     }
 
     public function getFechaCaducidad() {
-        return $this->fecha_caducidad;
+        return $this->fechaCaducidad;
     }
 
     public function getCVV() {
         return $this->cvv;
     }
+
+    public function setIdUsuario($id_usuario) {
+        $this->id_usuario = $id_usuario;
+    }
     
-    public function getEmailPaypal() {
-        return $this->email_paipal;
-    }
-
-    public function getContrasenaPaypal() {
-        return $this->contrasena_paypal;
-    }
-
     public function setNombre($nombre) {
         $this->nombre = $nombre;
     }
 
     public function setApellidos($apellidos) {
         $this->apellidos = $apellidos;
-    }
-
-    public function setIdUsuario($id_usuario) {
-        $this->id_usuario = $id_usuario;
     }
 
     public function setContrasena($contrasena) {
@@ -113,8 +98,8 @@ class Usuario extends Conexion{
         $this->email = $email;
     }
 
-    public function setFechaNacimiento($fecha_nacimiento) {
-        $this->fecha_nacimiento = $fecha_nacimiento;
+    public function setFechaNacimiento($fechaNacimiento) {
+        $this->fechaNacimiento = $fechaNacimiento;
     }
 
     public function setDireccion($direccion) {
@@ -129,61 +114,97 @@ class Usuario extends Conexion{
         $this->provincia = $provincia;
     }
 
-    public function setCodigoPostal($codigo_postal) {
-        $this->codigo_postal = $codigo_postal;
+    public function setCodigoPostal($codigoPostal) {
+        $this->codigoPostal = $codigoPostal;
     }
     
     public function setGenero($genero) {
         $this->genero = $genero;
     }
 
-    public function setMetodoPago($metodo_pago) {
-        $this->metodo_mago = $metodo_pago;
+    public function setNumeroTarjeta($numeroTarjeta) {
+        $this->numeroTarjeta = $numeroTarjeta;
     }
 
-    public function setNumeroTarjeta($numero_tarjeta) {
-        $this->numero_tarjeta = $numero_tarjeta;
-    }
-
-    public function setFechaCaducidad($fecha_caducidad) {
-        $this->fecha_caducidad = $fecha_caducidad;
+    public function setFechaCaducidad($fechaCaducidad) {
+        $this->fechaCaducidad = $fechaCaducidad;
     }
 
     public function setCVV($cvv) {
         $this->cvv = $cvv;
     }
-    
-    public function setEmailPaypal($email_paypal) {
-        $this->email_paipal = $email_paypal;
-    }
 
-    public function setContrasenaPaypal($contrasena_paypal) {
-        $this->contrasena_paypal = $contrasena_paypal;
-    }
-
-    public function __construct($nombre, $apellidos, $id_usuario=null, $contrasena, $email, 
-    $fecha_nacimiento, $direccion, $ciudad, $provincia, $codigo_postal, $genero, $metodo_pago, 
-    $numero_tarjeta, $fecha_caducidad, $cvv, $email_paypal, $contrasena_paypal) {
+    public function registrarUsuario(){
         
-        $this->nombre = $nombre;
-        $this->apellidos = $apellidos;
-        $this->id_usuario = $id_usuario;
-        $this->contrasena = $contrasena;
-        $this->email = $email;
-        $this->fecha_nacimiento = $fecha_nacimiento;
-        $this->direccion = $direccion;
-        $this->ciudad = $ciudad;
-        $this->provincia = $provincia;
-        $this->codigo_postal = $codigo_postal;
-        $this->genero = $genero;
-        $this->metodo_pago = $metodo_pago;
-        $this->numero_tarjeta = $numero_tarjeta;
-        $this->fecha_caducidad = $fecha_caducidad;
-        $this->cvv = $cvv;
-        $this->email_paypal = $email_paypal;
-        $this->contrasena_paypal = $contrasena_paypal;
+        $id_usuario = $_POST['id_usuario'];
+        $nombre=$_POST['nombre'];
+        $apellidos = $_POST['apellidos'];
+        $contrasena = $_POST['contrasena'];
+        $email = $_POST['email'];
+        $fechaNacimiento = $_POST['fechaNacimiento'];
+        $direccion = $_POST['direccion'];
+        $ciudad = $_POST['ciudad'];
+        $provincia = $_POST['provincia'];
+        $codigoPostal = $_POST['codigoPostal'];
+        $genero = $_POST['genero'];
+        $numeroTarjeta = $_POST['numeroTarjeta'];
+        $fechaCaducidad = $_POST['fechaCaducidad'];
+        $cvv = $_POST['cvv'];
+        
+        $consulta = $this->connect()->prepare('INSERT INTO USUARIO (id_usuario, nombre, apellidos, contrasena, email, 
+        fechaNacimiento, direccion, ciudad, provincia, codigoPostal, genero, numeroTarjeta, 
+        fechaCaducidad, cvv) 
+        VALUES(:id_usuario, :nombre, :apellidos, :contrasena, :email, :fechaNacimiento, :direccion, 
+        :ciudad, :provincia, :codigoPostal, :genero, :numeroTarjeta, :fechaCaducidad, 
+        :cvv)');
+        
+        $consulta->bindParam(':nombre', $this->nombre);
+        $consulta->bindParam(':apellidos', $this->apellidos);
+        $consulta->bindParam(':id_usuario', $this->id_usuario);
+        $consulta->bindParam(':contrasena', $this->contrasena);
+        $consulta->bindParam(':email', $this->email);
+        $consulta->bindParam(':fechaNacimiento', $this->fechaNacimiento);
+        $consulta->bindParam(':direccion', $this->direccion);
+        $consulta->bindParam(':ciudad', $this->ciudad);
+        $consulta->bindParam(':provincia', $this->provincia);
+        $consulta->bindParam(':codigoPostal', $this->codigoPostal);
+        $consulta->bindParam(':genero', $this->genero);
+        $consulta->bindParam(':numeroTarjeta', $this->numeroTarjeta);
+        $consulta->bindParam(':fechaCaducidad', $this->fechaCaducidad);
+        $consulta->bindParam(':cvv', $this->cvv);
 
+        if($consulta->execute()){
+            header('Location:./confirmacion_registro.php');
+        }
     }
+    
+    public function existeUsuario($id_usuario, $contrasena){
+        $consulta = $this->connect()->prepare('SELECT * FROM USUARIO WHERE id_usuario = :id_usuario AND contrasena = :contrasena');
+        $consulta->execute(['id_usuario' => $id_usuario, 'contrasena' => $contrasena]);
+
+        if ($consulta->rowCount()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setUsuario($id_usuario) {
+        $consulta = $this->connect()->prepare('SELECT * FROM USUARIO WHERE id_usuario = :id_usuario');
+        $consulta->execute(['id_usuario' => $id_usuario]);
+
+        foreach ($consulta as $usuarioActual) {
+            $this->nombre = $usuarioActual['nombre'];
+            $this->id_usuario = $usuarioActual['id_usuario'];
+        }
+    }
+
+    public function modificarUsuario(){
+        $query = $this->connect()->prepare('UPDATE USUARIO SET nombre = :nombre WHERE id_usuario = :id_usuario');
+        $query->execute(['id_usuario' => $this->id_usuario]);
+    }
+
+    
 
 
 }
