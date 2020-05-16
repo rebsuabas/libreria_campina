@@ -179,7 +179,8 @@ class Usuario extends Conexion{
     }
     
     public function existeUsuario($usuario, $pass){
-        $consulta = $this->connect()->prepare('SELECT * FROM USUARIO WHERE id_usuario = :usuario AND contrasena = :pass');
+        $consulta = $this->connect()->prepare('SELECT * FROM USUARIO WHERE id_usuario = :usuario 
+                                                AND contrasena = :pass');
         $consulta->execute(['usuario' => $usuario, 'pass' => $pass]);
 
         if ($consulta->rowCount()) {
@@ -199,10 +200,10 @@ class Usuario extends Conexion{
         }
     }
 
-    public function modificarUsuario(){
+    /*public function modificarUsuario(){
         $query = $this->connect()->prepare('UPDATE USUARIO SET nombre = :nombre WHERE id_usuario = :id_usuario');
         $query->execute(['id_usuario' => $this->id_usuario]);
-    }
+    }*/
 
     
 

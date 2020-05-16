@@ -6,12 +6,12 @@ class Sesion {
         session_start();
     }
 
-    public function setUsuarioActual($id_usuario){
-        $_SESSION['id_usuario'] = $id_usuario;
+    public function setUsuarioActual($usuario){
+        $_SESSION['usuario'] = $usuario;
     }
 
     public function getUsuarioActual() {
-        return $_SESSION['id_usuario'];
+        return $_SESSION['usuario'];
     }
 
     public function cerrarSesion() {

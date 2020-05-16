@@ -1,20 +1,3 @@
-<?php 
-    
-    if (isset($_POST['cerrar_sesion'])) {
-        header('Location:./index.php');
-    } 
-    
-    /*include_once './clases/Usuario.php';
-    include_once './clases/sesion.php';
-
-    $sesionUsuario = new Sesion();
-    $usuario = new Usuario();
-
-    session_start();
-    $id_usuario = $_SESSION['id_usuario'];*/
-
-?>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,10 +6,10 @@
     </head>
     <body>
         <div id="contenedor">
-            <form method="POST" action="">
+            <form method="POST" action="./cerrar_sesion.php">
                 <div id="cabecera">
                     <h2>Librería La Campiña</h2>
-                    <h3>Bienvenid@ <?php $id_usuario ?></h3>
+                    <h3>Bienvenid@ <?php echo $usuario->getNombre() ?></h3>
                 </div>
                 <hr>
                 <div id="menu">

@@ -3,28 +3,32 @@
     include_once './clases/Usuario.php';
     include_once './clases/sesion.php';
 
-    $sesionUsuario = new Sesion();
+    $sesion = new Sesion();
     $usuario = new Usuario();
     
-    
-    $_SESSION['id_usuario']=(isset($_POST['id_usuario']) ?htmlspecialchars($_POST['id_usuario']):'');
-    
-    $id_usuario=(isset($_POST['id_usuario']) ?htmlspecialchars($_POST['id_usuario']):'');
-    $contrasena=(isset($_POST['contrasena']) ?htmlspecialchars($_POST['contrasena']):'');
+    if (isset($_SESSION['usuario'])) {
+        $usuario->setUsuario($sesion->getUsuarioActual());
+        include_once './menu_principal.php';
 
-    if (isset($_POST['id_usuario']) && isset($_POST['contrasena'])) {
+    } elseif (isset($_POST['id_usuario']) && isset($_POST['contrasena'])) {
 
-        if ($usuario->existeUsuario($id_usuario, $contrasena)) {
-            $sesionUsuario->getUsuarioActual($id_usuario);
-            $usuario->setUsuario($id_usuario);
+        $userForm=$_POST['id_usuario'];
+        $passForm=$_POST['contrasena'];
+
+        if ($usuario->existeUsuario($userForm, $passForm)) {
+            $sesion->setUsuarioActual($userForm);
+            $usuario->setUsuario($userForm);
             include_once './menu_principal.php';
         } else {
-            echo "Error en la validacion";
+            $errorLogin = "Nombre de usuario y/o contraseña incorrecto.";
+            include_once './inicio_sesion.php';
         }
 
     } elseif (isset($_POST['salir'])) {
         header('Location:./index.php');
-    } 
+    } else {
+        include_once 'inicio_sesion.php';
+    }
 
 ?>
 
@@ -37,6 +41,15 @@
     <body>
         <div id="contenedor">
             <form method="POST" action="">
+
+            <?php
+            
+                if (isset($errorLogin)) {
+                    echo $errorLogin;
+                } 
+            
+            ?>
+
                 <div id="cabecera">
                 <h2>Inicio Sesión</h2>
                 </div>
