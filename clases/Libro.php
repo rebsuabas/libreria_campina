@@ -1,8 +1,8 @@
 <?php
 
-require_once "conexion.php";
+include_once './conexion.php';
 
-class Libro {
+class Libro extends Conexion {
 
     private $id_libro;
     private $titulo;
@@ -88,19 +88,18 @@ class Libro {
         $this->cantidad = $cantidad;
     }
 
-    public function __construct($id_libro=null, $titulo, $titulo_original, $id_autor, $idioma, 
-    $idioma_original, $disponibilidad, $precio, $cantidad) {
+    public function librosDisponibles() {
         
-        $this->id_libro = $id_libro;
-        $this->titulo = $titulo;
-        $this->titulo_original = $titulo_original;
-        $this->id_autor = $id_autor;
-        $this->idioma = $idioma;
-        $this->idioma_original = $idioma_original;
-        $this->disponibilidad = $disponibilidad;
-        $this->precio = $precio;
-        $this->cantidad = $cantidad;
+        $sql = 'SELECT titulo FROM LIBRO WHERE cantidad > 0';
+        $consulta=Conexion::connect()->prepare($sql);
+        $consulta->execute();
+        return $consulta->fetchAll();
+        $consulta->close();
 
+    }
+
+    public function catalogoLibros() {
+        return $this->connect()->consulta('SELECT titulo, id_autor FROM LIBRO');
     }
 
 }

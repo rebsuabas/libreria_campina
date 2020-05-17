@@ -1,7 +1,8 @@
 <?php 
-	
+    
+    
+
     if (isset($_POST['cerrar_sesion'])) {
-        header('Location:./index.php');
     } elseif (isset($_POST['volver'])) {
         header('Location:./menu_principal.php');
     } 
@@ -30,8 +31,27 @@
                     </div>
                     <div id="lista_libros">
 
+                        <?php
+
+                            include_once './clases/Libro.php';
+                            $libro = new Libro();
+                            $disponible=$libro->librosDisponibles();
+
+                            foreach ($disponible as $key => $value) {
+                                 ?> 
+                                <li>
+                                    <u><?php echo $value['titulo']; ?></u>
+                                </li>
+                                
+                                <br /><?php 
+                            }
+
+                        
+                        ?>
+
                     </div>
                     <div id="volver">
+                        <br />
                         <input type="submit" name="volver" value="Volver">
                     </div>
                 </div>
