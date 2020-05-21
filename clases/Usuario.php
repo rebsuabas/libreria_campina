@@ -134,6 +134,20 @@ class Usuario extends Conexion{
         $this->cvv = $cvv;
     }
 
+    /*private function __construct($id_usuario = '?', $apellidos = '?', $email = '?', $fechaNacimiento = '?', 
+    $direccion = '?', $ciudad = '?', $provincia = '?', $codigoPostal = '?', $genero = '?')
+    {
+        $this->nombre=$nombre;
+        $this->apellidos = $apellidos;
+        $this->email = $email;
+        $this->fechaNacimiento = $fechaNacimiento;
+        $this->direccion = $direccion;
+        $this->ciudad = $ciudad;
+        $this->provincia = $provincia;
+        $this->codigoPostal = $codigoPostal;
+        $this->genero = $genero;
+    }*/
+
     public function registrarUsuario(){
         
         $id_usuario = $_POST['id_usuario'];
@@ -183,7 +197,7 @@ class Usuario extends Conexion{
                                                 AND contrasena = :pass');
         $consulta->execute(['usuario' => $usuario, 'pass' => $pass]);
 
-        if ($consulta->rowCount()) {
+        if ($consulta->rowCount() > 0) {
             return true;
         } else {
             return false;
@@ -200,10 +214,79 @@ class Usuario extends Conexion{
         }
     }
 
-    /*public function modificarUsuario(){
-        $query = $this->connect()->prepare('UPDATE USUARIO SET nombre = :nombre WHERE id_usuario = :id_usuario');
-        $query->execute(['id_usuario' => $this->id_usuario]);
-    }*/
+    public function datosUsuario($usuario) {
+        $consulta = $this->connect()->prepare('SELECT * FROM USUARIO WHERE id_usuario = :usuario');
+        $consulta->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'USUARIO');
+        $consulta->execute(['usuario' => $usuario]);
+
+        while ($fila=$consulta->fetch()) { ?>
+                    
+            <div id="nombre" class="espacio">
+                <label class="negrita">Nombre: </label>
+                <label> <?php echo $fila->nombre ?> </label>
+            </div>
+            <div id="apellidos" class="espacio">
+                <label class="negrita">Apellidos: </label>
+                <label> <?php echo $fila->apellidos ?> </label>
+            </div>
+            <div id="usuario" class="espacio">
+                <label class="negrita">Usuario: </label>
+                <label class="negrita"><?php echo $fila->ID_USUARIO ?></label>
+            </div>
+            <div id="email" class="espacio">
+                <label class="negrita">Correo electrónico: </label>
+                <label><?php echo $fila->email ?></label>
+            </div>
+            <div id="fechaNacimiento" class="espacio">
+                <label class="negrita">Fecha de nacimiento: </label>
+                <label><?php echo $fila->fechaNacimiento ?></label>
+            </div>
+            <div id="direccion_envio" class="espacio">
+                <label class="negrita">Dirección de envío</label>
+                <br />
+                <br />
+                <ul>
+                    <li><b>Calle: </b><label><?php echo $fila->direccion ?></label></li>
+                    <li><b>Ciudad: </b><label><?php echo $fila->ciudad ?></label></li>
+                    <li><b>Provincia: </b><label><?php echo $fila->provincia ?></label></li>
+                    <li><b>Código postal: </b><label></label><?php echo $fila->codigoPostal ?></li>
+                </ul>
+            </div>
+            <div id="genero" class="espacio">
+                <label class="negrita">Género: </label>
+                <label><?php echo $fila->genero ?></label>
+            </div> 
+<?php   }
+
+            
+    }
+
+    public function modificarUsuario($usuario){
+
+        $consulta = $this->connect()->prepare('UPDATE USUARIO SET nombre = :nombre,
+                                                apellidos = :apellidos, contrasena = :contrasena,
+                                                email = :email, fechaNacimiento = :fechaNacimiento, 
+                                                direccion = :direccion, ciudad = :ciudad,
+                                                provincia = :provincia, codigoPostal = :codigoPostal,
+                                                genero = :genero, numeroTarjeta = :numeroTarjeta,
+                                                fechaCaducidad = :fechaCaducidad, cvv = :cvv
+                                                WHERE id_usuario = :usuario');
+        if ($consulta->execute([':usuario' => $usuario, ':nombre' => $this->nombre, 
+        ':apellidos' => $this->apellidos, ':contrasena' => $this->contrasena, ':email' => $this->email,
+        ':fechaNacimiento' => $this->fechaNacimiento, ':direccion' => $this->direccion, 
+        ':ciudad' => $this->ciudad, ':provincia' => $this->provincia, ':codigoPostal' => $this->codigoPostal,
+        ':genero' => $this->genero, ':numeroTarjeta' => $this->numeroTarjeta, 
+        ':fechaCaducidad' => $this->fechaCaducidad, ':cvv' => $this->cvv])) {
+            header('Location:./confirmacion_actualizacion.php');
+        }
+    }
+
+    public function borrarUsuario($usuario) {
+        $consulta = $this->connect()->prepare('DELETE FROM USUARIO WHERE id_usuario = :usuario');
+        if ($consulta->execute([':usuario' => $usuario])) {
+            header('Location:./confirmacion_eliminacion.php');
+        }
+    }
 
     
 

@@ -1,7 +1,7 @@
 <?php 
 	
     if (isset($_POST['salir'])) {
-        header('Location:./index.php');
+        header('Location:./cerrar_sesion.php');
     } 
 
 ?>

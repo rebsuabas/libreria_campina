@@ -90,7 +90,7 @@ class Libro extends Conexion {
 
     public function librosDisponibles() {
         
-        $sql = 'SELECT titulo FROM LIBRO WHERE cantidad > 0';
+        $sql = 'SELECT id_libro, titulo FROM LIBRO WHERE cantidad > 0';
         $consulta=Conexion::connect()->prepare($sql);
         $consulta->execute();
         return $consulta->fetchAll();
@@ -99,7 +99,13 @@ class Libro extends Conexion {
     }
 
     public function catalogoLibros() {
-        return $this->connect()->consulta('SELECT titulo, id_autor FROM LIBRO');
+        
+        $sql = 'SELECT id_libro, titulo FROM LIBRO';
+        $consulta=Conexion::connect()->prepare($sql);
+        $consulta->execute();
+        return $consulta->fetchAll();
+        $consulta->close();
+
     }
 
 }

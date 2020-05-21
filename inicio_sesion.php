@@ -18,7 +18,7 @@
         if ($usuario->existeUsuario($userForm, $passForm)) {
             $sesion->setUsuarioActual($userForm);
             $usuario->setUsuario($userForm);
-            include_once './menu_principal.php';
+            header('Location:./menu_principal.php');
         } else {
             $errorLogin = "Nombre de usuario y/o contraseña incorrecto.";
             include_once './inicio_sesion.php';

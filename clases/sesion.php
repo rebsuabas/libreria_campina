@@ -10,8 +10,8 @@ class Sesion {
         $_SESSION['usuario'] = $usuario;
     }
 
-    public function getUsuarioActual() {
-        return $_SESSION['usuario'];
+    public function setNombreActual($nombre){
+        $_SESSION['nombre'] = $nombre;
     }
 
     public function cerrarSesion() {

@@ -2,7 +2,7 @@
 
 require_once "conexion.php";
 
-class Autor {
+class Autor extends Conexion {
 
     private $id_autor;
     private $nombre;
@@ -61,15 +61,13 @@ class Autor {
         $this->obras = $obras;
     }
 
-    public function __construct($id_autor=null, $nombre, $nacionalidad, $ano_nacimiento, $ano_defuncion, 
-    $obras) {
+    public function catalogoAutores() {
         
-        $this->id_autor = $id_autor;
-        $this->nombre = $nombre;
-        $this->nacionalidad = $nacionalidad;
-        $this->ano_nacimiento = $ano_nacimiento;
-        $this->ano_defuncion = $ano_defuncion;
-        $this->obras = $obras;
+        $sql = 'SELECT nombre, anoNacimiento FROM AUTOR';
+        $consulta=Conexion::connect()->prepare($sql);
+        $consulta->execute();
+        return $consulta->fetchAll();
+        $consulta->close();
 
     }
 

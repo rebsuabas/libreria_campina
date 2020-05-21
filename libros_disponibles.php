@@ -3,6 +3,7 @@
     
 
     if (isset($_POST['cerrar_sesion'])) {
+        header('Location:./cerrar_sesion.php');
     } elseif (isset($_POST['volver'])) {
         header('Location:./menu_principal.php');
     } 
@@ -40,12 +41,11 @@
                             foreach ($disponible as $key => $value) {
                                  ?> 
                                 <li>
-                                    <u><?php echo $value['titulo']; ?></u>
+                                    <a href="./datos_libro.php"><u><?php echo $value['id_libro'] . ' - '. $value['titulo']; ?></u></a>
                                 </li>
                                 
                                 <br /><?php 
                             }
-
                         
                         ?>
 

@@ -1,3 +1,12 @@
+<?php
+
+    require_once './clases/Usuario.php';
+    require_once './clases/sesion.php';
+
+    session_start();
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -9,7 +18,7 @@
             <form method="POST" action="./cerrar_sesion.php">
                 <div id="cabecera">
                     <h2>Librería La Campiña</h2>
-                    <h3>Bienvenid@ <?php echo $usuario->getNombre() ?></h3>
+                    <h3>Bienvenid@ <?php echo $_SESSION['usuario']; ?></h3>
                 </div>
                 <hr>
                 <div id="menu">

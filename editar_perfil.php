@@ -1,12 +1,56 @@
 <?php 
-	
-    if (isset($_POST['cerrar_sesion'])) {
-        header('Location:./index.php');
-    } elseif (isset($_POST['actualizar'])) {
+    
+    require_once './clases/Usuario.php';
+    require_once './clases/sesion.php';
 
+    session_start();
+
+    if (isset($_POST['cerrar_sesion'])) {
+        header('Location:./cerrar_sesion.php');
+    } elseif (isset($_POST['actualizar'])) {
+        
     } elseif (isset($_POST['volver'])) {
         header('Location:./mi_perfil.php');
     } 
+
+    $nombre=(isset($_POST['nombre']) ?htmlspecialchars($_POST['nombre']):'');
+    $apellidos = (isset($_POST['apellidos']) ?htmlspecialchars($_POST['apellidos']):'');
+    $contrasena = (isset($_POST['contrasena']) ?htmlspecialchars($_POST['contrasena']):'');
+    $email = (isset($_POST['email']) ?htmlspecialchars($_POST['email']):'');
+    $fechaNacimiento = (isset($_POST['fechaNacimiento']) ?htmlspecialchars($_POST['fechaNacimiento']):'');
+    $direccion = (isset($_POST['direccion']) ?htmlspecialchars($_POST['direccion']):'');
+    $ciudad = (isset($_POST['ciudad']) ?htmlspecialchars($_POST['ciudad']):'');
+    $provincia = (isset($_POST['provincia']) ?htmlspecialchars($_POST['provincia']):'');
+    $codigoPostal = (isset($_POST['codigoPostal']) ?htmlspecialchars($_POST['codigoPostal']):'');
+    $genero = (isset($_POST['genero']) ?htmlspecialchars($_POST['genero']):'');
+    $numeroTarjeta = (isset($_POST['numeroTarjeta']) ?htmlspecialchars($_POST['numeroTarjeta']):'');
+    $fechaCaducidad = (isset($_POST['fechaCaducidad']) ?htmlspecialchars($_POST['fechaCaducidad']):'');
+    $cvv = (isset($_POST['cvv']) ?htmlspecialchars($_POST['cvv']):'');
+
+    $modificar = new Usuario();
+    
+    if (isset($_POST['nombre']) && isset($_POST['apellidos']) && isset($_POST['contrasena']) 
+    && isset($_POST['email']) && isset($_POST['fechaNacimiento']) && isset($_POST['direccion']) 
+    && isset($_POST['ciudad']) && isset($_POST['provincia']) && isset($_POST['codigoPostal']) 
+    && isset($_POST['genero']) && isset($_POST['numeroTarjeta']) && isset($_POST['fechaCaducidad']) 
+    && isset($_POST['cvv'])) {
+
+        $modificar->setNombre($_POST['nombre']);
+        $modificar->setApellidos($_POST['apellidos']);
+        $modificar->setContrasena($_POST['contrasena']);
+        $modificar->setEmail($_POST['email']);
+        $modificar->setFechaNacimiento($_POST['fechaNacimiento']);
+        $modificar->setDireccion($_POST['direccion']);
+        $modificar->setCiudad($_POST['ciudad']);
+        $modificar->setProvincia($_POST['provincia']);
+        $modificar->setCodigoPostal($_POST['codigoPostal']);
+        $modificar->setGenero($_POST['genero']);
+        $modificar->setNumeroTarjeta($_POST['numeroTarjeta']);
+        $modificar->setFechaCaducidad($_POST['fechaCaducidad']);
+        $modificar->setCVV($_POST['cvv']);
+        $modificar->modificarUsuario($_SESSION['usuario']);
+    } 
+    
 
 ?>
 
@@ -21,11 +65,18 @@
             <form method="POST" action="">
                 <div id="cabecera">
                     <h2>Librería La Campiña</h2>
+                    <h3>Editar perfil de <?php echo $_SESSION['usuario']; ?></h3>
                 </div>
                 <hr>
                 <div id="menu">
                     <div id="cerrar_sesion">
                         <input type="submit" name="cerrar_sesion" value="Cerrar Sesión">
+                    </div>
+                    <div id="nota">
+                        <br /><br />
+                        <label>Para poder realizar la actualización de datos se
+                        deben completar todos los campos.</label>
+                        <br /><br /><br />
                     </div>
                     <div id="nombre">
                         <label class="black">Nombre completo</label> 

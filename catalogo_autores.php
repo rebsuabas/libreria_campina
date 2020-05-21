@@ -1,7 +1,7 @@
 <?php 
 	
     if (isset($_POST['cerrar_sesion'])) {
-        header('Location:./index.php');
+        header('Location:./cerrar_sesion.php');
     } elseif (isset($_POST['volver'])) {
         header('Location:./menu_principal.php');
     } 
@@ -29,6 +29,23 @@
                         <h3>CATÁLOGO AUTORES</h3>
                     </div>
                     <div id="lista_autores">
+                    
+                    <?php
+
+                        include_once './clases/Autor.php';
+                        $autor = new Autor();
+                        $catalogo=$autor->catalogoAutores();
+
+                        foreach ($catalogo as $key => $value) {
+                            ?> 
+                            <li>
+                                <u><?php echo $value['nombre'] . ' (' . $value['anoNacimiento'] . ')'; ?></u>
+                            </li>
+                            
+                            <br /><?php 
+                        }
+
+                    ?>
 
                     </div>
                     <div id="volver">
