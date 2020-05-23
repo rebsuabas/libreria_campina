@@ -39,11 +39,12 @@
                         foreach ($catalogo as $key => $value) {
                             ?> 
                             <li>
-                                <u><?php echo $value['nombre'] . ' (' . $value['anoNacimiento'] . ')'; ?></u>
+                                <u><a href="./datos_autor.php?autor=<?php echo $value['id_autor'] ?>"><?php echo $value['nombre'] . ' (' . $value['anoNacimiento'] . ')'; ?></a></u>
                             </li>
                             
                             <br /><?php 
                         }
+
 
                     ?>
 

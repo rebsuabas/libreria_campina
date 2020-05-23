@@ -1,6 +1,7 @@
 <?php
 
 require_once "conexion.php";
+require_once './clases/Libro.php';
 
 class Autor extends Conexion {
 
@@ -63,12 +64,81 @@ class Autor extends Conexion {
 
     public function catalogoAutores() {
         
-        $sql = 'SELECT nombre, anoNacimiento FROM AUTOR';
+        $sql = 'SELECT id_autor, nombre, anoNacimiento FROM AUTOR';
         $consulta=Conexion::connect()->prepare($sql);
         $consulta->execute();
         return $consulta->fetchAll();
         $consulta->close();
 
+    }
+
+    public function datosAutor($autor) {
+
+        $autor = $_GET['autor'];
+        $consulta = $this->connect()->prepare('SELECT * FROM AUTOR WHERE id_autor = :autor');
+        $consulta->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'AUTOR');
+        $consulta->execute(['autor' => $autor]);
+
+        while ($fila=$consulta->fetch()) { ?>
+             
+             <div id="id_autor" class="espacio">
+                <label class="negrita">Código autor/a: </label>
+                <label><?php echo $_GET['autor'] ?></label>
+            </div>
+            <div id="nombre" class="espacio">
+                <label class="negrita">Nombre: </label>
+                <label><?php echo $fila->nombre ?></label>
+            </div>
+            <div id="nacionalidad" class="espacio">
+                <label class="negrita">Nacionalidad: </label>
+                <label><?php echo $fila->nacionalidad ?></label>
+            </div>
+            <div id="ano_nacimiento" class="espacio">
+                <label class="negrita">Año de nacimiento: </label>
+                <label><?php echo $fila->anoNacimiento ?></label>
+            </div>
+            <?php if ($fila->anoDefuncion) { ?>
+                <div id="ano_defuncion" class="espacio">
+                    <label class="negrita">Año de defunción: </label>
+                    <label><?php echo $fila->anoDefuncion ?></label>
+                </div> <?php
+            } ?>
+            
+            <div id="obras" class="espacio">
+                <label class="negrita">Obras</label><br /><br />
+                <label>
+                
+                <?php
+
+                    $libro = new Autor();
+                    $obras=$libro->obrasAutor($_GET['autor']);
+
+                    foreach ($obras as $key => $value) {
+                            ?> 
+                        <li>
+                            <a href="./datos_libro.php?libro=<?php echo $value['id_libro']?>"><?php echo $value['titulo']?></a>
+                        </li>
+                        
+                        <br /><?php 
+                    }
+                        
+                ?>
+                
+                </label>
+            </div>
+<?php   }
+
+            
+    }
+
+    public function obrasAutor($autor) {
+
+        $sql = 'SELECT id_libro, titulo FROM LIBRO WHERE id_autor = :autor';
+        $consulta=Conexion::connect()->prepare($sql);
+        $consulta->execute(['autor' => $autor]);
+        return $consulta->fetchAll();
+        $consulta->close();
+                
     }
 
 }

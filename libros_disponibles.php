@@ -34,14 +34,14 @@
 
                         <?php
 
-                            include_once './clases/Libro.php';
+                            require_once './clases/Libro.php';
                             $libro = new Libro();
                             $disponible=$libro->librosDisponibles();
 
                             foreach ($disponible as $key => $value) {
                                  ?> 
                                 <li>
-                                    <a href="./datos_libro.php"><u><?php echo $value['id_libro'] . ' - '. $value['titulo']; ?></u></a>
+                                    <u><a href="./datos_libro.php?libro=<?php echo $value['id_libro']?>"><?php echo $value['titulo']?></a></u>
                                 </li>
                                 
                                 <br /><?php 

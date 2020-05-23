@@ -1,5 +1,7 @@
 <?php 
-	
+    
+    require_once './clases/Libro.php';
+
     if (isset($_POST['cerrar_sesion'])) {
         header('Location:./cerrar_sesion.php');
     } elseif (isset($_POST['comprar'])) {
@@ -31,38 +33,13 @@
                         <h3>DATOS DEL LIBRO</h3>
                     </div>
                     <div id="datos">
-                        <div id="titulo_libro" class="espacio">
-                            <label class="negrita">Tilulo: </label>
-                            <label></label>
-                        </div>
-                        <div id="titulo_original" class="espacio">
-                            <label class="negrita">Título Original: </label>
-                            <label></label>
-                        </div>
-                        <div id="autor" class="espacio">
-                            <label class="negrita">Autor: Paulo Coelho</label>
-                            <label></label>
-                        </div>
-                        <div id="idioma" class="espacio">
-                            <label class="negrita">Idioma: </label>
-                            <label></label>
-                        </div>
-                        <div id="idioma_original" class="espacio">
-                            <label class="negrita">Idioma Original: </label>
-                            <label></label>
-                        </div>
-                        <div id="codigo" class="espacio">
-                            <label class="negrita">Código: </label>
-                            <label></label>
-                        </div>
-                        <div id="disponibilidad" class="espacio">
-                            <label class="negrita">Disponibilidad: </label>
-                            <label></label>
-                        </div>
-                        <div id="precio" class="espacio">
-                            <label class="negrita">Precio: </label>
-                            <label></label>
-                        </div>
+                        
+                        <?php
+                            
+                            $datos= (new Libro())->datosLibro($_GET['libro']);
+                        
+                        ?>
+
                         <div id="tapa" class="espacio">
                             <label class="negrita">Tapa</label>
                             <br />

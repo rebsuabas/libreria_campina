@@ -1,5 +1,7 @@
 <?php 
-	
+    
+    require_once './clases/Autor.php';
+
     if (isset($_POST['cerrar_sesion'])) {
         header('Location:./cerrar_sesion.php');
     } elseif (isset($_POST['volver'])) {
@@ -29,26 +31,13 @@
                         <h3>DATOS DEL LIBRO</h3>
                     </div>
                     <div id="datos">
-                        <div id="nombre" class="espacio">
-                            <label class="negrita">Nombre: </label>
-                            <label></label>
-                        </div>
-                        <div id="nacionalidad" class="espacio">
-                            <label class="negrita">Nacionalidad: </label>
-                            <label></label>
-                        </div>
-                        <div id="ano_nacimiento" class="espacio">
-                            <label class="negrita">Año de nacimiento: </label>
-                            <label></label>
-                        </div>
-                        <div id="ano_defuncion" class="espacio">
-                            <label class="negrita">Año de defunción: </label>
-                            <label></label>
-                        </div>
-                        <div id="obras" class="espacio">
-                            <label class="negrita">Obras</label>
-                            <label></label>
-                        </div>
+                        
+                        <?php
+                            
+                            $datos= (new Autor())->datosAutor($_GET['autor']);
+                        
+                        ?>
+
                     </div>
                     <div id="botones">
                         <input type="submit" name="volver" value="Volver">

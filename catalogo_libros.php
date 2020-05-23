@@ -32,19 +32,19 @@
 
                     <?php
 
-                        include_once './clases/Libro.php';
+                        require_once './clases/Libro.php';
                         $libro = new Libro();
                         $catalogo=$libro->catalogoLibros();
 
                         foreach ($catalogo as $key => $value) {
-                            ?> 
+                                ?> 
                             <li>
-                                <u><?php echo $value['titulo']; ?></u>
+                                <a href="./datos_libro.php?libro=<?php echo $value['id_libro']?>"><?php echo $value['titulo']?></a>
                             </li>
                             
                             <br /><?php 
                         }
-
+                    
                     ?>
 
                     </div>

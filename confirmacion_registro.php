@@ -1,7 +1,7 @@
 <?php 
 	
     if (isset($_POST['inicio_sesion'])) {
-        header('Location:./menu_principal.php');
+        header('Location:./inicio_sesion.php');
     } elseif (isset($_POST['salir'])) {
         header('Location:./index.php');
     } 
