@@ -1,11 +1,20 @@
 <?php 
     
     require_once './clases/Libro.php';
+    require_once './clases/Usuario.php';
+    require_once './clases/Compra.php';
+    require_once './clases/sesion.php';
 
+    session_start();
+
+    $modificar = new Libro();
+    
     if (isset($_POST['cerrar_sesion'])) {
         header('Location:./cerrar_sesion.php');
     } elseif (isset($_POST['comprar'])) {
-
+        $compra= (new Compra())->comprar($_SESSION['usuario'],$_GET['libro']);
+        $modificar->setCantidad($_GET['cantidad']);
+        $modificar->stock($_GET['libro']);
     } elseif (isset($_POST['volver'])) {
         header('Location:./catalogo_libros.php');
     } 
@@ -50,12 +59,9 @@
                                 <option value="dura">Dura</option>
                             </select>
                         </div>
-                        <div id="cantidad" class="espacio">
-                            <label class="negrita">Cantidad</label>
-                            <br />
-                            <br />
-                            <input type="number" name="cantidad" min="1">
-                        </div>
+                        <br />
+                        <br />
+                        <br />
                     </div>
                     <div id="botones">
                         <input type="submit" name="comprar" value="Comprar">

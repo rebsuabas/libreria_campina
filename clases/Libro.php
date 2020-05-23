@@ -81,7 +81,7 @@ class Libro extends Conexion {
 
     public function librosDisponibles() {
         
-        $sql = 'SELECT id_libro, titulo FROM '. self::TABLA_LIBRO .' WHERE cantidad > 0';
+        $sql = 'SELECT id_libro, titulo, cantidad FROM '. self::TABLA_LIBRO .' WHERE cantidad > 0';
         $consulta=Conexion::connect()->prepare($sql);
         $consulta->execute();
         return $consulta->fetchAll();
@@ -91,7 +91,7 @@ class Libro extends Conexion {
 
     public function catalogoLibros() {
         
-        $sql = 'SELECT id_libro, titulo FROM '. self::TABLA_LIBRO;
+        $sql = 'SELECT id_libro, titulo, cantidad FROM '. self::TABLA_LIBRO;
         $consulta=Conexion::connect()->prepare($sql);
         $consulta->execute();
         return $consulta->fetchAll();
@@ -143,6 +143,25 @@ class Libro extends Conexion {
 <?php   }
 
             
+    }
+
+    public function stock($libro) {
+        $libro = $_GET['libro'];
+        $cantidad = $_GET['cantidad'];
+        $consulta = $this->connect()->prepare('UPDATE '. self::TABLA_LIBRO . 
+                                                ' SET cantidad = cantidad - 1
+                                                WHERE id_libro = :libro');
+        
+        $consulta2 = $this->connect()->prepare('SELECT cantidad FROM LIBRO 
+                                                WHERE cantidad > 0 AND id_libro = :libro');
+        $consulta2->execute(['libro' => $libro]);
+
+        if ($consulta2->rowCount() > 0) {
+            if($consulta->execute([':libro' => $libro])){
+                return true;
+            }
+        } 
+        
     }
 
 

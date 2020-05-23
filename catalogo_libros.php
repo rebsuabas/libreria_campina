@@ -39,7 +39,7 @@
                         foreach ($catalogo as $key => $value) {
                                 ?> 
                             <li>
-                                <a href="./datos_libro.php?libro=<?php echo $value['id_libro']?>"><?php echo $value['titulo']?></a>
+                                <a href="./datos_libro.php?libro=<?php echo $value['id_libro']?>&cantidad=<?php echo $value['cantidad']?>"><?php echo $value['titulo']?></a>
                             </li>
                             
                             <br /><?php 

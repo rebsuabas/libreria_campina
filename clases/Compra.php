@@ -1,8 +1,10 @@
 <?php
 
 require_once "conexion.php";
+require_once './clases/Libro.php';
+require_once './clases/Usuario.php';
 
-class Compra {
+class Compra extends Conexion {
 
     private $id_usuario;
     private $id_libro;
@@ -25,10 +27,30 @@ class Compra {
         $this->id_libro = $id_libro;
     }
 
-    public function __construct($id_usuario, $id_libro) {
+    public function comprar($usuario,$libro) {
+
+        $usuario=$_SESSION['usuario'];
+        $libro=$_GET['libro'];
+
+        $consulta = $this->connect()->prepare('INSERT INTO COMPRA (id_usuario, id_libro) 
+        VALUES(:usuario, :libro)');
+
+        $consulta->bindParam(':usuario', $usuario);
+        $consulta->bindParam(':libro', $libro);
+
+        $consulta2 = $this->connect()->prepare('SELECT cantidad FROM LIBRO 
+                                                WHERE cantidad > 0 AND id_libro = :libro');
+        $consulta2->execute(['libro' => $libro]);
+
+        if ($consulta2->rowCount() > 0) {
+            if($consulta->execute()){
+                header('Location:./confirmacion_compra.php');
+            }
+        } else {
+            echo 'No se puede realizar la compra.';
+        }    
+
         
-        $this->id_usuario = $id_usuario;
-        $this->id_libro = $id_libro;
 
     }
 

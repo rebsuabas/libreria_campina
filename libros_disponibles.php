@@ -1,7 +1,5 @@
 <?php 
-    
-    
-
+ 
     if (isset($_POST['cerrar_sesion'])) {
         header('Location:./cerrar_sesion.php');
     } elseif (isset($_POST['volver'])) {
@@ -41,7 +39,7 @@
                             foreach ($disponible as $key => $value) {
                                  ?> 
                                 <li>
-                                    <u><a href="./datos_libro.php?libro=<?php echo $value['id_libro']?>"><?php echo $value['titulo']?></a></u>
+                                    <u><a href="./datos_libro.php?libro=<?php echo $value['id_libro']?>&cantidad=<?php echo $value['cantidad']?>"><?php echo $value['titulo']?></a></u>
                                 </li>
                                 
                                 <br /><?php 
