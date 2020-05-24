@@ -28,7 +28,7 @@
                         <input type="submit" name="cerrar_sesion" value="Cerrar Sesión">
                     </div>
                     <div id="titulo">
-                        <h3>DATOS DEL LIBRO</h3>
+                        <h3>DATOS DEL AUTOR</h3>
                     </div>
                     <div id="datos">
                         
