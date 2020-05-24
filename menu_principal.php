@@ -3,6 +3,9 @@
     require_once './clases/Usuario.php';
     require_once './clases/sesion.php';
     require_once './clases/fecha.php';
+    require_once './clases/creadora.php';
+    
+    $creadora = Creadora::getUsuarioPorDefecto();
 
     session_start();
 
@@ -53,6 +56,9 @@
                         </div>
                         <div id="mi_perfil_titulo">
                             <a href="mi_perfil.php"><label>MI PERFIL</label></a>
+                        </div>
+                        <div id="pie">
+                            <label><?php echo $creadora->pie(); ?></label>
                         </div>
                     </div>
                     <div></div>
