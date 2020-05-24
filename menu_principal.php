@@ -2,6 +2,7 @@
 
     require_once './clases/Usuario.php';
     require_once './clases/sesion.php';
+    require_once './clases/fecha.php';
 
     session_start();
 
@@ -22,6 +23,7 @@
                 </div>
                 <hr>
                 <div id="menu">
+                    <?php echo Fecha::getFechaHora();?>
                     <div id="cerrar_sesion">
                         <input type="submit" name="cerrar_sesion" value="Cerrar Sesión">
                     </div>

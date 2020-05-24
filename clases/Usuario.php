@@ -134,20 +134,6 @@ class Usuario extends Conexion{
         $this->cvv = $cvv;
     }
 
-    /*private function __construct($id_usuario = '?', $apellidos = '?', $email = '?', $fechaNacimiento = '?', 
-    $direccion = '?', $ciudad = '?', $provincia = '?', $codigoPostal = '?', $genero = '?')
-    {
-        $this->nombre=$nombre;
-        $this->apellidos = $apellidos;
-        $this->email = $email;
-        $this->fechaNacimiento = $fechaNacimiento;
-        $this->direccion = $direccion;
-        $this->ciudad = $ciudad;
-        $this->provincia = $provincia;
-        $this->codigoPostal = $codigoPostal;
-        $this->genero = $genero;
-    }*/
-
     public function registrarUsuario(){
         
         $id_usuario = $_POST['id_usuario'];
@@ -287,8 +273,6 @@ class Usuario extends Conexion{
             header('Location:./confirmacion_eliminacion.php');
         }
     }
-
-    
 
 
 }
