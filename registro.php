@@ -1,6 +1,6 @@
 <?php
     
-    include_once './clases/Usuario.php';
+    require_once './clases/Usuario.php';
 
     if(isset($_POST['volver'])) {
         header('Location:./index.php');

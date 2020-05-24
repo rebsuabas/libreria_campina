@@ -1,6 +1,6 @@
 <?php
 
-    include_once './clases/sesion.php';
+    include_once './clases/Sesion.php';
 
     $sesion = new Sesion();
     $sesion->cerrarSesion();

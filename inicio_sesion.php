@@ -1,14 +1,14 @@
 <?php 
     
-    include_once './clases/Usuario.php';
-    include_once './clases/sesion.php';
+    require_once './clases/Usuario.php';
+    require_once './clases/Sesion.php';
 
     $sesion = new Sesion();
     $usuario = new Usuario();
     
     if (isset($_SESSION['usuario'])) {
         $usuario->setUsuario($sesion->getUsuarioActual());
-        include_once './menu_principal.php';
+        require_once './menu_principal.php';
 
     } elseif (isset($_POST['id_usuario']) && isset($_POST['contrasena'])) {
 
@@ -21,13 +21,13 @@
             header('Location:./menu_principal.php');
         } else {
             $errorLogin = "Nombre de usuario y/o contraseña incorrecto.";
-            include_once './inicio_sesion.php';
+            require_once './inicio_sesion.php';
         }
 
     } elseif (isset($_POST['salir'])) {
         header('Location:./index.php');
     } else {
-        include_once 'inicio_sesion.php';
+        require_once 'inicio_sesion.php';
     }
 
 ?>

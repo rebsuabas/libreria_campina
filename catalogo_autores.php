@@ -32,7 +32,7 @@
                     
                     <?php
 
-                        include_once './clases/Autor.php';
+                        require_once './clases/Autor.php';
                         $autor = new Autor();
                         $catalogo=$autor->catalogoAutores();
 

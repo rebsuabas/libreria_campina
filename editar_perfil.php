@@ -1,7 +1,7 @@
 <?php 
     
     require_once './clases/Usuario.php';
-    require_once './clases/sesion.php';
+    require_once './clases/Sesion.php';
 
     session_start();
 
