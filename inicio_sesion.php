@@ -21,10 +21,7 @@
             $sesion->setUsuarioActual($userForm);
             $usuario->setUsuario($userForm);
             header('Location:./menu_principal.php');
-        } else {
-            $errorLogin = "Nombre de usuario y/o contraseña incorrecto.";
-            header('Location:./inicio_sesion.php');
-        }
+        } 
 
     } 
 
@@ -39,14 +36,6 @@
     <body>
         <div id="contenedor">
             <form method="POST" action="">
-
-            <?php
-            
-                if (isset($errorLogin)) {
-                    echo $errorLogin;
-                } 
-            
-            ?>
 
                 <div id="cabecera">
                 <h2>Inicio Sesión</h2>
