@@ -6,9 +6,11 @@
     $sesion = new Sesion();
     $usuario = new Usuario();
     
-    if (isset($_SESSION['usuario'])) {
+    if (isset($_POST['salir'])) {
+        header('Location:./index.php');
+    } elseif (isset($_SESSION['usuario'])) {
         $usuario->setUsuario($sesion->getUsuarioActual());
-        require_once './menu_principal.php';
+        header('Location:./menu_principal.php');
 
     } elseif (isset($_POST['id_usuario']) && isset($_POST['contrasena'])) {
 
@@ -21,14 +23,10 @@
             header('Location:./menu_principal.php');
         } else {
             $errorLogin = "Nombre de usuario y/o contraseña incorrecto.";
-            require_once './inicio_sesion.php';
+            header('Location:./inicio_sesion.php');
         }
 
-    } elseif (isset($_POST['salir'])) {
-        header('Location:./index.php');
-    } else {
-        require_once 'inicio_sesion.php';
-    }
+    } 
 
 ?>
 
