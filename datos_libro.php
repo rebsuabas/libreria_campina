@@ -8,13 +8,16 @@
     session_start();
 
     $modificar = new Libro();
+    $comprar = new Compra();
     
     if (isset($_POST['cerrar_sesion'])) {
         header('Location:./cerrar_sesion.php');
     } elseif (isset($_POST['comprar'])) {
-        $compra= (new Compra())->comprar($_SESSION['usuario'],$_GET['libro']);
-        $modificar->setCantidad($_GET['cantidad']);
-        $modificar->stock($_GET['libro']);
+        $comprar->setCompra($_SESSION['usuario'],$_GET['libro']);
+        $comprar->comprar();
+
+        $modificar->setStock($_GET['libro'],$_GET['cantidad']);
+        $modificar->stock();
     } elseif (isset($_POST['volver'])) {
         header('Location:./catalogo_libros.php');
     } 

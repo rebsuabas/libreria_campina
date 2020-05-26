@@ -27,7 +27,7 @@ class Compra extends Conexion {
         $this->id_libro = $id_libro;
     }
 
-    public function comprar($usuario,$libro) {
+    public function comprar() {
 
         $usuario=$_SESSION['usuario'];
         $libro=$_GET['libro'];
@@ -52,6 +52,21 @@ class Compra extends Conexion {
 
         
 
+    }
+
+    public function setCompra($usurio,$libro) {
+
+        $usuario=$_SESSION['usuario'];
+        $libro=$_GET['libro'];
+        
+        $consulta = $this->connect()->prepare('SELECT * FROM COMPRA WHERE id_usuario = :usuario 
+                                                AND id_libro = :libro');
+        $consulta->execute(['usuario' => $usuario, 'libro' => $libro]);
+
+        foreach ($consulta as $nuevaCompra) {
+            $this->nombre = $nuevaCompra['id_usuario'];
+            $this->id_usuario = $nuevaCompra['id_libro'];
+        }
     }
 
 

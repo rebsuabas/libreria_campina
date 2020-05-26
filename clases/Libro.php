@@ -145,9 +145,11 @@ class Libro extends Conexion {
             
     }
 
-    public function stock($libro) {
+    public function stock() {
+        
         $libro = $_GET['libro'];
         $cantidad = $_GET['cantidad'];
+
         $consulta = $this->connect()->prepare('UPDATE '. self::TABLA_LIBRO . 
                                                 ' SET cantidad = cantidad - 1
                                                 WHERE id_libro = :libro');
@@ -162,6 +164,21 @@ class Libro extends Conexion {
             }
         } 
         
+    }
+
+    public function setStock($libro,$cantidad) {
+
+        $libro=$_GET['libro'];
+        $cantidad = $_GET['cantidad'];
+        
+        $consulta = $this->connect()->prepare('SELECT * FROM LIBRO WHERE id_libro = :libro 
+                                                AND cantidad = :cantidad');
+        $consulta->execute(['libro' => $libro, 'cantidad' => $cantidad]);
+
+        foreach ($consulta as $modificarStock) {
+            $this->id_libro = $modificarStock['id_libro'];
+            $this->id_usuario = $modificarStock['cantidad'];
+        }
     }
 
 
