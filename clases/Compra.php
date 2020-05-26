@@ -38,6 +38,7 @@ class Compra extends Conexion {
 
     public function comprar() {
 
+        //MCVB yo quitaría estos datos y le pasaría a la consulta los datos propios del objeto. Ver el siguiente comentario
         $usuario=$_SESSION['usuario'];
         $libro=$_GET['libro'];
         $tapa=$_POST['tapa'];
@@ -45,6 +46,8 @@ class Compra extends Conexion {
         $consulta = $this->connect()->prepare('INSERT INTO COMPRA (id_usuario, id_libro, tapa) 
         VALUES(:usuario, :libro, :tapa)');
 
+        //MCVB:  $consulta->bindParam(':usuario', $this->id_usuario);
+        //MCVB: Igual con los otros dos datos
         $consulta->bindParam(':usuario', $usuario);
         $consulta->bindParam(':libro', $libro);
         $consulta->bindParam(':tapa', $tapa);
