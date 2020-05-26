@@ -13,7 +13,7 @@
     if (isset($_POST['cerrar_sesion'])) {
         header('Location:./cerrar_sesion.php');
     } elseif (isset($_POST['comprar'])) {
-        $comprar->setCompra($_SESSION['usuario'],$_GET['libro']);
+        $comprar->setCompra($_SESSION['usuario'],$_GET['libro'],$_POST['tapa']);
         $comprar->comprar();
 
         $modificar->setStock($_GET['libro'],$_GET['cantidad']);
@@ -56,7 +56,7 @@
                             <label class="negrita">Tapa</label>
                             <br />
                             <br />
-                            <select>
+                            <select name="tapa">
                                 <option value=""></option>
                                 <option value="blanda">Blanda</option>
                                 <option value="dura">Dura</option>

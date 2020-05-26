@@ -8,6 +8,7 @@ class Compra extends Conexion {
 
     private $id_usuario;
     private $id_libro;
+    private $tapa;
 
     const TABLA_COMPRA = 'compra';
 
@@ -19,6 +20,10 @@ class Compra extends Conexion {
         return $this->id_libro;
     }
 
+    public function getTapa() {
+        return $this->tapa;
+    }
+
     public function setIdUsuario($id_usuario) {
         $this->id_usuario = $id_usuario;
     }
@@ -27,16 +32,22 @@ class Compra extends Conexion {
         $this->id_libro = $id_libro;
     }
 
+    public function setTapa($tapa) {
+        $this->tapa = $tapa;
+    }
+
     public function comprar() {
 
         $usuario=$_SESSION['usuario'];
         $libro=$_GET['libro'];
+        $tapa=$_POST['tapa'];
 
-        $consulta = $this->connect()->prepare('INSERT INTO COMPRA (id_usuario, id_libro) 
-        VALUES(:usuario, :libro)');
+        $consulta = $this->connect()->prepare('INSERT INTO COMPRA (id_usuario, id_libro, tapa) 
+        VALUES(:usuario, :libro, :tapa)');
 
         $consulta->bindParam(':usuario', $usuario);
         $consulta->bindParam(':libro', $libro);
+        $consulta->bindParam(':tapa', $tapa);
 
         $consulta2 = $this->connect()->prepare('SELECT cantidad FROM LIBRO 
                                                 WHERE cantidad > 0 AND id_libro = :libro');
@@ -54,10 +65,11 @@ class Compra extends Conexion {
 
     }
 
-    public function setCompra($usurio,$libro) {
+    public function setCompra($usurio,$libro,$tapa) {
 
         $usuario=$_SESSION['usuario'];
         $libro=$_GET['libro'];
+        $tapa=$_POST['tapa'];
         
         $consulta = $this->connect()->prepare('SELECT * FROM COMPRA WHERE id_usuario = :usuario 
                                                 AND id_libro = :libro');
@@ -66,6 +78,7 @@ class Compra extends Conexion {
         foreach ($consulta as $nuevaCompra) {
             $this->nombre = $nuevaCompra['id_usuario'];
             $this->id_usuario = $nuevaCompra['id_libro'];
+            $this->tapa = $tapa['tapa'];
         }
     }
 
