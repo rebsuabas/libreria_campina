@@ -13,6 +13,11 @@
     if (isset($_POST['cerrar_sesion'])) {
         header('Location:./cerrar_sesion.php');
     } elseif (isset($_POST['comprar'])) {
+        //MCVB: Rebeca, cuando te comento que hay que cambiar las propiedades al objeto, te digo que se hace así. No sé si está bien escrito el nombre de los métodos. De manera, que dentro de comprar no tienes que volver a coger los valores de sesión sino directamente los valores del objeto. Te añado comentarios en la clase Compra. 
+        //MCVB: el método setCompra no sé si lo necesitas realizar antes de comprar. Si es por asignarle los valores a idUSuario, idLibro y tapa, deja de usarlo ya que esos valores se asignan con los métodos set que te he dejado en comentarios.
+        //comprar->setIdUsuario($_SESSION['usuario']);
+        //comprar->setIdLibro($_GET['libro']);
+        //comprar->setTapa($_POST['tapa']);
         $comprar->setCompra($_SESSION['usuario'],$_GET['libro'],$_POST['tapa']);
         $comprar->comprar();
 
