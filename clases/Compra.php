@@ -38,23 +38,16 @@ class Compra extends Conexion {
 
     public function comprar() {
 
-        //MCVB yo quitaría estos datos y le pasaría a la consulta los datos propios del objeto. Ver el siguiente comentario
-        $usuario=$_SESSION['usuario'];
-        $libro=$_GET['libro'];
-        $tapa=$_POST['tapa'];
-
         $consulta = $this->connect()->prepare('INSERT INTO COMPRA (id_usuario, id_libro, tapa) 
         VALUES(:usuario, :libro, :tapa)');
 
-        //MCVB:  $consulta->bindParam(':usuario', $this->id_usuario);
-        //MCVB: Igual con los otros dos datos
-        $consulta->bindParam(':usuario', $usuario);
-        $consulta->bindParam(':libro', $libro);
-        $consulta->bindParam(':tapa', $tapa);
+        $consulta->bindParam(':usuario', $this->id_usuario);
+        $consulta->bindParam(':libro', $this->id_libro);
+        $consulta->bindParam(':tapa', $this->tapa);
 
         $consulta2 = $this->connect()->prepare('SELECT cantidad FROM LIBRO 
                                                 WHERE cantidad > 0 AND id_libro = :libro');
-        $consulta2->execute(['libro' => $libro]);
+        $consulta2->execute(['libro' => $this->id_libro]);
 
         if ($consulta2->rowCount() > 0) {
             if($consulta->execute()){
@@ -66,23 +59,6 @@ class Compra extends Conexion {
 
         
 
-    }
-
-    public function setCompra($usurio,$libro,$tapa) {
-
-        $usuario=$_SESSION['usuario'];
-        $libro=$_GET['libro'];
-        $tapa=$_POST['tapa'];
-        
-        $consulta = $this->connect()->prepare('SELECT * FROM COMPRA WHERE id_usuario = :usuario 
-                                                AND id_libro = :libro');
-        $consulta->execute(['usuario' => $usuario, 'libro' => $libro]);
-
-        foreach ($consulta as $nuevaCompra) {
-            $this->nombre = $nuevaCompra['id_usuario'];
-            $this->id_usuario = $nuevaCompra['id_libro'];
-            $this->tapa = $tapa['tapa'];
-        }
     }
 
 
