@@ -21,7 +21,9 @@
             $sesion->setUsuarioActual($userForm);
             $usuario->setUsuario($userForm);
             header('Location:./menu_principal.php');
-        } 
+        } else {
+            echo "Usuario y/o contraseña incorrecto";
+        }
 
     } 
 

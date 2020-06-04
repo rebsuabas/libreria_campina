@@ -154,10 +154,13 @@ class Usuario extends Conexion{
         $consulta = $this->connect()->prepare('INSERT INTO USUARIO (id_usuario, nombre, apellidos, contrasena, email, 
         fechaNacimiento, direccion, ciudad, provincia, codigoPostal, genero, numeroTarjeta, 
         fechaCaducidad, cvv) 
-        VALUES(:id_usuario, :nombre, :apellidos, :contrasena, :email, :fechaNacimiento, :direccion, 
+        VALUES(:id_usuario, :nombre, :apellidos, md5(:contrasena), :email, :fechaNacimiento, :direccion, 
         :ciudad, :provincia, :codigoPostal, :genero, :numeroTarjeta, :fechaCaducidad, 
         :cvv)');
         
+        $consulta2 = $this->connect()->prepare('SELECT * FROM USUARIO WHERE id_usuario = :id_usuario');
+        $consulta2->execute([':id_usuario' => $id_usuario]);
+
         $consulta->bindParam(':nombre', $this->nombre);
         $consulta->bindParam(':apellidos', $this->apellidos);
         $consulta->bindParam(':id_usuario', $this->id_usuario);
@@ -173,15 +176,21 @@ class Usuario extends Conexion{
         $consulta->bindParam(':fechaCaducidad', $this->fechaCaducidad);
         $consulta->bindParam(':cvv', $this->cvv);
 
-        if($consulta->execute()){
+        if($consulta2->rowCount() > 0){
+            header('Location:./error_registro.php');
+        } elseif ($fechaNacimiento=null || $fechaCaducidad=null || $genero=null) {
+            header('Location:./error_registro.php');
+        }elseif ($consulta->execute()) {
             header('Location:./confirmacion_registro.php');
         }
     }
     
     public function existeUsuario($usuario, $pass){
+
+        $md5pass = md5($pass);
         $consulta = $this->connect()->prepare('SELECT * FROM USUARIO WHERE id_usuario = :usuario 
                                                 AND contrasena = :pass');
-        $consulta->execute(['usuario' => $usuario, 'pass' => $pass]);
+        $consulta->execute(['usuario' => $usuario, 'pass' => $md5pass]);
 
         if ($consulta->rowCount() > 0) {
             return true;
