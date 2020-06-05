@@ -176,11 +176,9 @@ class Usuario extends Conexion{
         $consulta->bindParam(':fechaCaducidad', $this->fechaCaducidad);
         $consulta->bindParam(':cvv', $this->cvv);
 
-        if($consulta2->rowCount() > 0){
+        if($consulta2->rowCount() > 0 || empty($id_usuario) || empty($fechaNacimiento) || empty($fechaCaducidad) || empty($genero)){
             header('Location:./error_registro.php');
-        } elseif ($fechaNacimiento=null || $fechaCaducidad=null || $genero=null) {
-            header('Location:./error_registro.php');
-        }elseif ($consulta->execute()) {
+        } elseif ($consulta->execute()) {
             header('Location:./confirmacion_registro.php');
         }
     }
@@ -266,6 +264,7 @@ class Usuario extends Conexion{
                                                 genero = :genero, numeroTarjeta = :numeroTarjeta,
                                                 fechaCaducidad = :fechaCaducidad, cvv = :cvv
                                                 WHERE id_usuario = :usuario');
+                                                
         if ($consulta->execute([':usuario' => $usuario, ':nombre' => $this->nombre, 
         ':apellidos' => $this->apellidos, ':contrasena' => $this->contrasena, ':email' => $this->email,
         ':fechaNacimiento' => $this->fechaNacimiento, ':direccion' => $this->direccion, 
