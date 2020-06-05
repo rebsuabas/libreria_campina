@@ -257,7 +257,7 @@ class Usuario extends Conexion{
     public function modificarUsuario($usuario){
 
         $consulta = $this->connect()->prepare('UPDATE USUARIO SET nombre = :nombre,
-                                                apellidos = :apellidos, contrasena = :contrasena,
+                                                apellidos = :apellidos, contrasena = md5(:contrasena),
                                                 email = :email, fechaNacimiento = :fechaNacimiento, 
                                                 direccion = :direccion, ciudad = :ciudad,
                                                 provincia = :provincia, codigoPostal = :codigoPostal,
@@ -272,7 +272,18 @@ class Usuario extends Conexion{
         ':genero' => $this->genero, ':numeroTarjeta' => $this->numeroTarjeta, 
         ':fechaCaducidad' => $this->fechaCaducidad, ':cvv' => $this->cvv])) {
             header('Location:./confirmacion_actualizacion.php');
-        }
+        } 
+    }
+
+    public function buscar($usuario) {
+        $consulta = $this->connect()->prepare('SELECT * FROM USUARIO WHERE id_usuario = :usuario');
+        
+        $consulta->bindParam(':usuario', $this->id_usuario);
+        
+        $consulta->execute(['usuario' => $usuario]);
+
+        $res = $consulta->fetch();
+        return $res;
     }
 
     public function borrarUsuario($usuario) {

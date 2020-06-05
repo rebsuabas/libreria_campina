@@ -13,6 +13,10 @@
         header('Location:./mi_perfil.php');
     } 
 
+    if (isset($_SESSION['usuario'])) {
+        $buscar= (new Usuario())->buscar($_SESSION['usuario']);
+    }
+
     $nombre=(isset($_POST['nombre']) ?htmlspecialchars($_POST['nombre']):'');
     $apellidos = (isset($_POST['apellidos']) ?htmlspecialchars($_POST['apellidos']):'');
     $contrasena = (isset($_POST['contrasena']) ?htmlspecialchars($_POST['contrasena']):'');
@@ -29,7 +33,9 @@
 
     $modificar = new Usuario();
     
-    if (isset($_POST['nombre']) && isset($_POST['apellidos']) && isset($_POST['contrasena']) 
+    if (isset($_POST['actualizar']) && empty(isset($_POST['genero']))) {
+        echo "Error: no se ha insertado ningún dato en el campo obligatorio género.";
+    } elseif (isset($_POST['nombre']) && isset($_POST['apellidos']) && isset($_POST['contrasena']) 
     && isset($_POST['email']) && isset($_POST['fechaNacimiento']) && isset($_POST['direccion']) 
     && isset($_POST['ciudad']) && isset($_POST['provincia']) && isset($_POST['codigoPostal']) 
     && isset($_POST['genero']) && isset($_POST['numeroTarjeta']) && isset($_POST['fechaCaducidad']) 
@@ -82,57 +88,57 @@
                         <label class="black">Nombre completo</label> 
                         <br />
                         <br />
-                        <input type="text" name="nombre" value="Nombre">
-                        <input type="text" name="apellidos" value="Apellidos">
+                        <input type="text" name="nombre" value="<?php echo $buscar['nombre'] ?>">
+                        <input type="text" name="apellidos" value="<?php echo $buscar['apellidos'] ?>">
                     </div>
                     <div id="contrasena" class="espacio">
                         <label class="black">Contraseña</label>
                         <br />
                         <br />
-                        <input type="password" name="contrasena">
+                        <input type="password" name="contrasena" value="<?php echo $buscar['contrasena'] ?>">
                     </div>
                     <div id="email" class="espacio">
                         <label class="black">Correo electrónico</label>
                         <br />
                         <br />
-                        <input type="text" name="email">
+                        <input type="text" name="email" value="<?php echo $buscar['email'] ?>">
                     </div>
                     <div id="fechaNacimiento" class="espacio">
                         <label class="black">Fecha de nacimiento</label>
                         <br />
                         <br />
-                        <input type="date" name="fechaNacimiento">
+                        <input type="date" name="fechaNacimiento" value="<?php echo $buscar['fechaNacimiento'] ?>">
                     </div>
                     <div id="direccion_envio" class="espacio">
                         <label class="black">Dirección de envío</label>
                         <div id="direccion" class="espacio2">
                             <label>Dirección</label> 
                             <br />
-                            <input type="text" name="direccion">
+                            <input type="text" name="direccion" value="<?php echo $buscar['direccion'] ?>">
                         </div>
                         <div id="ciudad" class="espacio2">
                             <label>Ciudad</label>
                             <br />
-                            <input type="text" name="ciudad">
+                            <input type="text" name="ciudad" value="<?php echo $buscar['ciudad'] ?>">
                         </div>
                         <div id="provincia" class="espacio2">
                             <label>Provincia</label>
                             <br />
-                            <input type="text" name="provincia">
+                            <input type="text" name="provincia" value="<?php echo $buscar['provincia'] ?>">
                         </div>
                         <div id="codigoPostal" class="espacio2">
                             <label>Código Postal</label>
                             <br />
-                            <input type="text" name="codigoPostal">
+                            <input type="text" name="codigoPostal" value="<?php echo $buscar['codigoPostal'] ?>">
                         </div>
                     </div>
                     <div id="genero" class="espacio">
-                        <label class="black">Género</label>
+                        <label class="black">Género <i>(Campo obligatorio)</i></label>
                         <br />
                         <br />
                         <input type="radio" name="genero" value="Hombre" /><label>Hombre</label><br />
                         <input type="radio" name="genero" value="Mujer" /><label>Mujer</label><br />
-                        <input type="radio" name="genero" value="Otro"><label>Otro</label>
+                        <input type="radio" name="genero" value="Otro" ><label>Otro</label>
                     </div>
                     <div id="metodo_pago">
                         <h4>Datos de pago</h4>
@@ -140,17 +146,17 @@
                             <div id="numeroTarjeta" class="espacio2">
                                 <label>Número de la tarjeta</label>
                                 <br />
-                                <input type="text" name="numeroTarjeta">
+                                <input type="text" name="numeroTarjeta" value="<?php echo $buscar['numeroTarjeta'] ?>">
                             </div>
                             <div id="fechaCaducidad" class="espacio2">
                                 <label>Fecha de caducidad</label>
                                 <br />
-                                <input type="date" name="fechaCaducidad">
+                                <input type="date" name="fechaCaducidad" value="<?php echo $buscar['fechaCaducidad'] ?>">
                             </div>
                             <div id="cvv" class="espacio2">
                                 <label>CVV</label>
                                 <br />
-                                <input type="text" name="cvv">
+                                <input type="text" name="cvv" value="<?php echo $buscar['cvv'] ?>">
                             </div>
                         </div>
                     </div>
