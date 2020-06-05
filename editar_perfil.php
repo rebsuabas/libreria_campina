@@ -34,7 +34,7 @@
     $modificar = new Usuario();
     
     if (isset($_POST['actualizar']) && empty(isset($_POST['genero']))) {
-        echo "Error: no se ha insertado ningún dato en el campo obligatorio género.";
+        echo "Error: no se ha seleccionado ningún dato en el campo obligatorio género.";
     } elseif (isset($_POST['nombre']) && isset($_POST['apellidos']) && isset($_POST['contrasena']) 
     && isset($_POST['email']) && isset($_POST['fechaNacimiento']) && isset($_POST['direccion']) 
     && isset($_POST['ciudad']) && isset($_POST['provincia']) && isset($_POST['codigoPostal']) 
